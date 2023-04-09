@@ -1,18 +1,50 @@
-import selenium
+# Import the required modules
+from selenium import webdriver
+import time
+from selenium.webdriver.common.by import By
+import requests
+import whisper
+import warnings
 
-# This is a sample Python script.
+warnings.filterwarnings("ignore")
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+model = whisper.load_model("base")
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def transcribe(url):
+    with open('.temp', 'wb') as f:
+        f.write(requests.get(url).content)
+    result = model.transcribe('.temp')
+    return result["text"].strip()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+def click_checkbox(driver):
+    driver.switch_to.default_content()
+    driver.switch_to.frame(driver.find_element(By.XPATH, ".//iframe[@title='reCAPTCHA']"))
+    driver.find_element(By.ID, "recaptcha-anchor-label").click()
+    driver.switch_to.default_content()
+
+
+def request_audio_version(driver):
+    driver.switch_to.default_content()
+    driver.switch_to.frame(
+        driver.find_element(By.XPATH, ".//iframe[@title='recaptcha challenge expires in two minutes']"))
+    driver.find_element(By.ID, "recaptcha-audio-button").click()
+
+
+def solve_audio_captcha(driver):
+    text = transcribe(driver.find_element(By.ID, "audio-source").get_attribute('src'))
+    driver.find_element(By.ID, "audio-response").send_keys(text)
+    driver.find_element(By.ID, "recaptcha-verify-button").click()
+
+
+if __name__ == "__main__":
+    driver = webdriver.Chrome()
+    driver.get("https://www.google.com/recaptcha/api2/demo")
+    click_checkbox(driver)
+    time.sleep(1)
+    request_audio_version(driver)
+    time.sleep(12)
+    time.sleep(1)
+    solve_audio_captcha(driver)
+    time.sleep(10)
