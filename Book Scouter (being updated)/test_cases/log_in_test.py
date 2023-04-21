@@ -19,9 +19,7 @@ class Test_Log_In:
     log = LogGenerating.log_generating()
 
     """
-    test case: log in unsuccessfully to website with spot-on credentials:
-    -> improper user email
-    -> improper user pwd
+    test case: log in successfully to website with spot-on credentials:
     """
 
     def test_log_in_001(self, setup):
@@ -163,3 +161,11 @@ class Test_Log_In:
         self.log.warning("Deleted all cookies.")
         self.driver.quit()
         self.log.warning("Repelled driver.")
+
+    """
+    test case: log in successfully to website with correct credentials:
+    -> User navigates from sign-up page to log-in page
+    """
+
+    def test_log_in_005(self, setup):
+        pass

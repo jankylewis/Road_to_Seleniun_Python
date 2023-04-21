@@ -11,3 +11,4 @@ class LogInPage:
     HPL_FORGOT_PASSWORD = ""
     HPL_SIGN_UP = ""
     BTN_SHOW = ""
+    BTN_CLOSE = ""
