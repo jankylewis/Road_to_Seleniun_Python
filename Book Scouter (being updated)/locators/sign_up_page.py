@@ -29,3 +29,9 @@ class SignUpPage:
     LBL_INVALID_EXPIRED_DATE: str = "//span[contains(@class, 'PaymentInputErrorMsg')][preceding-sibling::label[contains(text(), 'Expiration Date')]]"
     LBL_INVALID_CVC: str = "//span[contains(@class, 'PaymentInputErrorMsg')][preceding-sibling::label[contains(text(), 'CVC')]]"
     BTN_REGISTER_CARD: str = "//button[@type = 'button' and contains(text(), 'Sign up!')]"
+    LBL_INPUT_EMAIL_ERR_MSG: str = \
+        "//span[contains(@class, 'ErrorMsg')][preceding-sibling::label[contains(text(), 'Email')]]"
+    LBL_INPUT_PWD_ERR_MSG: str = \
+        "//span[contains(@class, 'ErrorMsg')][preceding-sibling::label[contains(text(), 'Password')]]"
+    LBL_INVALID_EMAIL_ERR_MSG: str = LBL_INPUT_EMAIL_ERR_MSG
+    LBL_INVALID_PWD_ERR_MSG: str = LBL_INPUT_PWD_ERR_MSG

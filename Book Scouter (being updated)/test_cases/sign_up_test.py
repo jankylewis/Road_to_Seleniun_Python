@@ -18,7 +18,6 @@ class Test_Sign_Up:
     test case: basic case to sign up successfully to website with spot-on credentials:
         + User checks on Newsletter checkbox by default
     """
-
     def test_sign_up_001(self, setup):
         print("\n*****/***** Sign up - Test case 001: *****/*****")
 
@@ -63,7 +62,6 @@ class Test_Sign_Up:
         test case: sign up successfully to website with spot-on credentials:
             + User unchecks on Newsletter checkbox
         """
-
     def test_sign_up_002(self, setup):
         print("\n*****/***** Sign up - Test case 002: *****/*****")
 
@@ -112,7 +110,6 @@ class Test_Sign_Up:
             -> User does nothing on the register pro page
             -> User hits the Sign-up button
     """
-
     def test_sign_up_003(self, setup):
         print("\n*****/***** Sign up - Test case 003: *****/*****")
 
@@ -155,7 +152,6 @@ class Test_Sign_Up:
     test case: sign up successfully to website with spot-on credentials:
         + User checks on Newsletter checkbox by default
     """
-
     def test_sign_up_004(self, setup):
         pass
 
@@ -163,22 +159,72 @@ class Test_Sign_Up:
     test case: sign up unsuccessfully to website with improper credentials:
     -> User's email existed
     """
-
     def test_sign_up_005(self, setup):
         pass
 
     """
     test case: sign up unsuccessfully to website with improper credentials:
-    -> User's inputted email was invalid (deficiency of @ sign, exceeding char limits, special char, ...)
+        + User's inputted email was invalid 
+        (deficiency of @ sign, exceeding char limits, special char, ...)
+        + User provides correct pwd
     """
-
     def test_sign_up_006(self, setup):
-        pass
+        print("\n*****/***** Sign up - Test case 006: *****/*****")
+
+        # setup test case by declaring instances n pages
+        self.driver = setup
+        self.driver.get(self.__base_url)
+        __exp_user_email = common_operations.randomizer(4, 1, 1)
+
+        # take UI actions
+        home_page.click_sign_up_btn(self)
+        sign_up.set_user_email(self, __exp_user_email)
+        sign_up.set_user_password(self, self.__user_password)
+
+        # begin assertions
+        if sign_up.verify_invalid_email_err_msg(self):
+            print("Error message found.")
+            print("Test case 006 was successful.")
+            assert True
+        else:
+            print("Test case 006 was unsuccessful.")
+            assert False
+
+        # tear down test cases
+        self.driver.delete_all_cookies()
+        print("Deleted all cookies.")
+        self.driver.quit()
+        print("Repelled driver.")
 
     """
     test case: sign up unsuccessfully to website with improper credentials:
-    -> User's inputted pwd was invalid (dissatisfied pwd standard of website)
+        + User's inputted pwd was invalid (dissatisfied pwd standard of website)
+        + User leaves blank to email field
     """
-
     def test_sign_up_007(self, setup):
-        pass
+        print("\n*****/***** Sign up - Test case 007: *****/*****")
+
+        # setup test case by declaring instances n pages
+        self.driver = setup
+        self.driver.get(self.__base_url)
+        __exp_user_pwd = common_operations.randomizer(1, 1, 1)
+
+        # take UI actions
+        home_page.click_sign_up_btn(self)
+        sign_up.set_user_password(self, exp_user_pwd=__exp_user_pwd)
+        sign_up.click_sign_up_btn(self)
+
+        # begin assertions
+        if sign_up.verify_invalid_pwd_err_msg(self) and sign_up.verify_input_email_err_msg(self):
+            print("Error messages found.")
+            print("Test case 007 was successful.")
+            assert True
+        else:
+            print("Test case 007 was unsuccessful.")
+            assert False
+
+        # tear down test cases
+        self.driver.delete_all_cookies()
+        self.print("Deleted all cookies.")
+        self.driver.quit()
+        self.print("Repelled driver.")

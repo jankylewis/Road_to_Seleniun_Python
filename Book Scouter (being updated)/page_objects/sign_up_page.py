@@ -25,25 +25,29 @@ class SignUpPage:
     LBL_INVALID_CC_NUMBER: str = sign_up.LBL_INVALID_CC_NUMBER
     LBL_INVALID_EXPIRED_DATE: str = sign_up.LBL_INVALID_EXPIRED_DATE
     LBL_INVALID_CVC: str = sign_up.LBL_INVALID_CVC
+    LBL_INPUT_EMAIL_ERR_MSG: str = sign_up.LBL_INPUT_EMAIL_ERR_MSG
+    LBL_INPUT_PWD_ERR_MSG: str = sign_up.LBL_INPUT_PWD_ERR_MSG
+    LBL_INVALID_EMAIL_ERR_MSG: str = sign_up.LBL_INVALID_EMAIL_ERR_MSG
+    LBL_INVALID_PWD_ERR_MSG: str = sign_up.LBL_INVALID_PWD_ERR_MSG
 
     def __init__(self, driver):
         self.driver = driver
 
     # register as a pro flow
-    def __set_cc_number(self, exp_cc_number):
+    def set_cc_number(self, exp_cc_number):
         common_ui_actions.send_key_to_element(self, SignUpPage.TXT_CC_NUMBER, exp_cc_number)
 
-    def __set_expired_date(self, exp_expired_date):
+    def set_expired_date(self, exp_expired_date):
         common_ui_actions.send_key_to_element(self, SignUpPage.TXT_EXPIRED_DATE, exp_expired_date)
 
-    def __set_cvc(self, exp_cvc):
+    def set_cvc(self, exp_cvc):
         common_ui_actions.send_key_to_element(self, SignUpPage.TXT_CVC, exp_cvc)
 
     # register as a basic user flow
-    def __set_user_email(self, exp_user_email):
+    def set_user_email(self, exp_user_email):
         common_ui_actions.send_key_to_element(self, SignUpPage.TXT_EMAIL, exp_user_email)
 
-    def __set_user_password(self, exp_user_pwd):
+    def set_user_password(self, exp_user_pwd):
         common_ui_actions.send_key_to_element(self, SignUpPage.TXT_PASSWORD, exp_user_pwd)
 
     def check_newsletter(self):
@@ -52,7 +56,7 @@ class SignUpPage:
     def check_becoming_pro(self):
         common_ui_actions.click_on_element(self, SignUpPage.CHK_BECOME_PRO)
 
-    def __click_sign_up_btn(self):
+    def click_sign_up_btn(self):
         common_ui_actions.click_on_element(self, SignUpPage.BTN_SIGN_UP)
 
     def click_log_in_btn(self):
@@ -63,18 +67,18 @@ class SignUpPage:
 
     # method to do register basically
     def execute_register(self, exp_user_email, exp_user_pwd):
-        SignUpPage.__set_user_email(self, exp_user_email)
-        SignUpPage.__set_user_password(self, exp_user_pwd)
-        SignUpPage.__click_sign_up_btn(self)
+        SignUpPage.set_user_email(self, exp_user_email)
+        SignUpPage.set_user_password(self, exp_user_pwd)
+        SignUpPage.click_sign_up_btn(self)
 
-    # method to do register as a privileged pro
+    # method to do register as a privileged pro flow
     def execute_register_as_pro(self, exp_cc_number, exp_expired_date, exp_cvc):
-        SignUpPage.__set_cc_number(self, exp_cc_number)
-        SignUpPage.__set_expired_date(self, exp_expired_date)
-        SignUpPage.__set_cvc(self, exp_cvc)
+        SignUpPage.set_cc_number(self, exp_cc_number)
+        SignUpPage.set_expired_date(self, exp_expired_date)
+        SignUpPage.set_cvc(self, exp_cvc)
         SignUpPage.click_register_card(self)
 
-    # assertions
+    # assertions for pro-user
     def verify_register_pro_lbl(self) -> bool:
         return common_assertions.verify_element_is_visible(self, SignUpPage.LBL_PRO)
 
@@ -104,6 +108,51 @@ class SignUpPage:
         if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INVALID_CVC):
             exp_err_msg: str = const.INVALID_CVC
             act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INVALID_CVC)
+            if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    # assertions for normal-user
+    def verify_input_email_err_msg(self) -> bool:
+        if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INPUT_EMAIL_ERR_MSG):
+            exp_err_msg: str = const.INPUT_EMAIL_ERR_MSG
+            act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INPUT_EMAIL_ERR_MSG)
+            if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    def verify_input_pwd_err_msg(self) -> bool:
+        if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INPUT_PWD_ERR_MSG):
+            exp_err_msg: str = const.INPUT_PWD_ERR_MSG
+            act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INPUT_PWD_ERR_MSG)
+            if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    def verify_invalid_email_err_msg(self) -> bool:
+        if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INVALID_EMAIL_ERR_MSG):
+            exp_err_msg: str = const.INVALID_EMAIL_ERR_MSG
+            act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INVALID_EMAIL_ERR_MSG)
+            if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    def verify_invalid_pwd_err_msg(self) -> bool:
+        if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INVALID_PWD_ERR_MSG):
+            exp_err_msg: str = const.INVALID_EMAIL_ERR_MSG
+            act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INVALID_EMAIL_ERR_MSG)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
                 return True
             else:

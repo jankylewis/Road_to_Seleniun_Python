@@ -27,6 +27,7 @@ class Constants:
     INPUT_EMAIL_ERR_MSG: str = "Please enter your email address"
     INPUT_PWD_ERR_MSG: str = "Please enter your password"
     INVALID_EMAIL_ERR_MSG: str = "Please enter a valid email address"
+    INVALID_PWD_ERR_MSG: str = "Password must be at least 6 characters long"
     INVALID_CC_NUMBER: str = "Invalid card number"
     INVALID_EXPIRED_DATE: str = "Invalid expiration date"
     INVALID_CVC: str = "Invalid security code"
