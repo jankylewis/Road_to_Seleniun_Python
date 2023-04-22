@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
+
 from common.common_waitings import CommonWaitings
 from common.constants import Constants
-from utilities.logger import LogGenerating
 
 
 class CommonAssertions:
@@ -9,8 +9,9 @@ class CommonAssertions:
     def __init__(self, driver):
         self.driver = driver
 
+    # can modify the time-out parameter when scripting
     def verify_element_is_visible(self, exp_locator: str) -> bool:
-        CommonWaitings.wait_element_until_visible(self, exp_locator, Constants.TIME_OUT_3S)
+        CommonWaitings.wait_element_until_visible(self, exp_locator, Constants.TIME_OUT_10S)
         return self.driver.find_element(By.XPATH, exp_locator).is_displayed()
 
     @staticmethod

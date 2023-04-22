@@ -1,12 +1,7 @@
-import time
-
-import selenium.webdriver.remote.webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions
-from common.constants import Constants
+
 from common.common_waitings import CommonWaitings
-from selenium import webdriver
+from common.constants import Constants
 
 
 class CommonUIActions:
@@ -21,6 +16,9 @@ class CommonUIActions:
         """
         self.maximize_window()
 
+    """
+    click on controls: checkbox, text, button, radio n some others
+    """
     def click_on_element(self, exp_locator: str):
         CommonWaitings.wait_element_until_clickable(self, exp_locator, Constants.TIME_OUT_3S)
         self.driver.find_element(By.XPATH, exp_locator).click()

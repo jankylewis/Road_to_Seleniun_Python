@@ -15,6 +15,7 @@
         ++ LBL = label
         ++ ALE = alert
         ++ TOAST = toast
+        ++ IMG = image
 
 - Class name: pascal case
 - Method name: snake case
