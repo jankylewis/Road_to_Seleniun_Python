@@ -1,6 +1,8 @@
-from page_objects.home_page import HomePage as home_page
-from page_objects.log_in_page import LogInPage as log_in_page
-from page_objects.profile_page import ProfilePage as profile_page
+import pytest
+
+from page_objects.extended_pages.home_page import HomePage as home_page
+from page_objects.onboard_experience.log_in_page import LogInPage as log_in_page
+from page_objects.extended_pages.profile_page import ProfilePage as profile_page
 from utilities.logger import LogGenerating
 from utilities.read_properties import ReadGlobalVariables as read_global_vars
 from common.common_operation_helpers import CommonOperatorHelper as common_ope
@@ -8,6 +10,7 @@ from common.constants import Constants as const
 from test_cases.abstract_test import setup
 
 
+@pytest.mark.usefixtures("setup")
 class Test_Log_In:
     __base_url = read_global_vars.get_application_url()
     __user_email = read_global_vars.get_user_email()

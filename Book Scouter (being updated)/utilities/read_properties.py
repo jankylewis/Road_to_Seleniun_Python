@@ -4,7 +4,9 @@ import configparser
 config = configparser.RawConfigParser()
 
 # global_variables.ini path
+# -> abs path:
 # config.read("/Users/vinhtran02092k/Desktop/practice_projects/Selenium_Python/Book Scouter/env_configurations/global_variables.ini")
+# -> use relative path to be dynamically changed:
 config.read("env_configurations/global_variables.ini")
 
 
@@ -38,3 +40,8 @@ class ReadGlobalVariables:
     def get_cvc() -> str:
         cvc = config.get("credit card data", "expired date")
         return cvc
+
+    @staticmethod
+    def get_browser_type() -> str:
+        br = config.get("browser type", "browser")
+        return br

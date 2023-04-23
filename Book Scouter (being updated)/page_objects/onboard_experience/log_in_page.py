@@ -1,7 +1,7 @@
 from common.common_assertions import CommonAssertions as common_assertions
 from common.common_ui_actions import CommonUIActions as common_ui_actions
 from common.constants import Constants as const
-from locators.log_in_page import LogInPage as log_in
+from locators.onboard_experience.log_in_page import LogInPage as log_in
 
 
 class LogInPage:

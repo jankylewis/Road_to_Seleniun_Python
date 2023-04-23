@@ -2,7 +2,7 @@
 from common.common_ui_actions import CommonUIActions as common_ui_actions
 from common.common_assertions import CommonAssertions as common_assertions
 from common.constants import Constants as const
-from locators.sign_up_page import SignUpPage as sign_up
+from locators.onboard_experience.sign_up_page import SignUpPage as sign_up
 
 
 class SignUpPage:

@@ -25,7 +25,7 @@ class CommonAssertions:
         if exp_str is None or act_str is None:
             print(f"There is a null value between: {exp_str} and {act_str}")
             return False
-        if exp_str.casefold() == act_str.casefold():
+        if (exp_str.strip()).casefold() == (act_str.strip()).casefold():
             print(f"{exp_str} was equal to {act_str}")
             return True
         else:

@@ -1,8 +1,5 @@
 class Constants:
-    """
-    Timeout variables for waiting methods
-    by second
-    """
+    # Timeout variables for waiting methods by second
     TIME_OUT_1S: int = 1
     TIME_OUT_2S: int = 2
     TIME_OUT_3S: int = 3
@@ -12,25 +9,28 @@ class Constants:
     MIN_TIME_OUT: float = 0.5
     MAX_TIME_OUT: int = 30
 
-    """
-    Test case classifications
-    """
+    # test case classifications
     TC_PASS_STATUS: str = "p"
     TC_FAILED_STATUS: str = "f"
     TC_LOG_IN_FUNCTION: str = "Log in"
     TC_SIGN_UP_FUNCTION: str = "Sign up"
 
-    """
-    Attribute value facilitating getting content from UI
-    """
+    # browser types
+    CHROME_BR: str = "chrome"
+    FIREFOX_BR: str = "firefox"
+    IE_BR: str = "ie"
+    EDGE_BR: str = "edge"
+    SAFARI_BR: str = "safari"
+    OPERA_BR: str = "opera"
+    BRAVE_BR: str = "brave"
+
+    # Attribute value facilitating getting content from UI
     ATTRIBUTE_VALUE: str = "value"
 
     """
     Text messages locate here
     """
-    """
-    log-in page
-    """
+    # log-in page
     INVALID_PASSWORD: str = "The presented password is invalid."
     BAD_CREDENTIALS: str = "Bad credentials."
     EXISTED_EMAIL: str = "Email: user already signed up."

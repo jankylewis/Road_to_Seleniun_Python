@@ -2,7 +2,7 @@ from common.common_assertions import CommonAssertions as common_assertions
 from common.common_ui_actions import CommonUIActions as common_ui_actions
 from common.common_waitings import CommonWaitings as common_waitings
 from common.constants import Constants
-from locators.home_page import HomePage as home
+from locators.extended_pages.home_page import HomePage as home
 
 
 class HomePage:

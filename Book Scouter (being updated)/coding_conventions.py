@@ -2,7 +2,7 @@
 
 - Locators:
     + UPPERCASE in all
-    + Abbreviations:
+    + Abbreviation of controls:
         ++ BTN = button
         ++ HPL = hyperlink
         ++ LNK = link
@@ -16,6 +16,11 @@
         ++ ALE = alert
         ++ TOAST = toast
         ++ IMG = image
+    + Abbreviation of other entities:
+        ++ ERR = error
+        ++ MSG = message
+        ++ BR = browser
+
 
 - Class name: pascal case
 - Method name: snake case

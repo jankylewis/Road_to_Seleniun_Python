@@ -1,15 +1,16 @@
+import pytest
+
 from common.common_operation_helpers import CommonOperatorHelper as common_ope
 from common.constants import Constants as const
-from page_objects.home_page import HomePage as home_page
-from page_objects.profile_page import ProfilePage as profile_page
-from page_objects.sign_up_page import SignUpPage as sign_up
+from page_objects.extended_pages.home_page import HomePage as home_page
+from page_objects.extended_pages.profile_page import ProfilePage as profile_page
+from page_objects.onboard_experience.sign_up_page import SignUpPage as sign_up
 from utilities.read_properties import ReadGlobalVariables as read_global_vars
-from common.common_waitings import CommonWaitings as waiter
-
 # must have to retrieve the setup method from fixture
 from test_cases.abstract_test import setup
 
 
+@pytest.mark.usefixtures("setup")
 class Test_Sign_Up:
     __base_url = read_global_vars.get_application_url()
     __user_email = read_global_vars.get_user_email()
