@@ -12,6 +12,17 @@ class Constants:
     MIN_TIME_OUT: float = 0.5
     MAX_TIME_OUT: int = 30
 
+    """
+    Test case classifications
+    """
+    TC_PASS_STATUS: str = "p"
+    TC_FAILED_STATUS: str = "f"
+    TC_LOG_IN_FUNCTION: str = "Log in"
+    TC_SIGN_UP_FUNCTION: str = "Sign up"
+
+    """
+    Attribute value facilitating getting content from UI
+    """
     ATTRIBUTE_VALUE: str = "value"
 
     """
@@ -22,6 +33,7 @@ class Constants:
     """
     INVALID_PASSWORD: str = "The presented password is invalid."
     BAD_CREDENTIALS: str = "Bad credentials."
+    EXISTED_EMAIL: str = "Email: user already signed up."
     # toast notification
     SUCCESSFULLY_LOG_IN: str = "You've successfully logged in."
     INPUT_EMAIL_ERR_MSG: str = "Please enter your email address"

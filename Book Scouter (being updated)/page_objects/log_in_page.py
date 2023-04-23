@@ -29,55 +29,75 @@ class LogInPage:
     # methods for assertions
     def verify_bad_credentials_toast_is_presented(self) -> bool:
         if common_assertions.verify_element_is_visible(self, LogInPage.ALE_TOAST_BAD_CREDENTIALS):
+            print("Toast found.")
             exp_err_msg: str = const.BAD_CREDENTIALS
             act_err_msg: str = common_ui_actions.get_text_from_element(self, LogInPage.ALE_TOAST_BAD_CREDENTIALS)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Toast SUCCESSFULLY verified.")
                 return True
             else:
+                print("Toast verified FAILED.")
                 return False
         else:
+            print("Toast NOT found.")
             return False
 
     def verify_invalid_password_toast_is_presented(self) -> bool:
         if common_assertions.verify_element_is_visible(self, LogInPage.ALE_TOAST_INCORRECT_PASSWORD):
+            print("Toast found.")
             exp_err_msg: str = const.INVALID_PASSWORD
             act_err_msg: str = common_ui_actions.get_text_from_element(self, LogInPage.ALE_TOAST_INCORRECT_PASSWORD)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Toast SUCCESSFULLY verified.")
                 return True
             else:
+                print("Toast verified FAILED.")
                 return False
         else:
+            print("Toast NOT found.")
             return False
 
     def verify_input_email_err_msg(self) -> bool:
         if common_assertions.verify_element_is_visible(self, LogInPage.LBL_INPUT_EMAIL_ERR_MSG):
+            print("Error message found.")
             exp_err_msg: str = const.INPUT_EMAIL_ERR_MSG
             act_err_msg: str = common_ui_actions.get_text_from_element(self, LogInPage.LBL_INPUT_EMAIL_ERR_MSG)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Error message SUCCESSFULLY verified.")
                 return True
             else:
+                print("Error message verified FAILED.")
                 return False
         else:
+            print("Error message NOT found.")
             return False
 
     def verify_input_pwd_err_msg(self) -> bool:
         if common_assertions.verify_element_is_visible(self, LogInPage.LBL_INPUT_PWD_ERR_MSG):
+            print("Error message found.")
             exp_err_msg: str = const.INPUT_PWD_ERR_MSG
             act_err_msg: str = common_ui_actions.get_text_from_element(self, LogInPage.LBL_INPUT_PWD_ERR_MSG)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Error message SUCCESSFULLY verified.")
                 return True
             else:
+                print("Error message verified FAILED.")
                 return False
         else:
+            print("Error message NOT found.")
             return False
 
     def verify_invalid_email_err_msg(self) -> bool:
         if common_assertions.verify_element_is_visible(self, LogInPage.LBL_INVALID_EMAIL_ERR_MSG):
+            print("Error message found.")
             exp_err_msg: str = const.INVALID_EMAIL_ERR_MSG
             act_err_msg: str = common_ui_actions.get_text_from_element(self, LogInPage.LBL_INVALID_EMAIL_ERR_MSG)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Error message SUCCESSFULLY verified.")
                 return True
             else:
+                print("Error message verified FAILED.")
                 return False
         else:
+            print("Error message NOT found.")
             return False

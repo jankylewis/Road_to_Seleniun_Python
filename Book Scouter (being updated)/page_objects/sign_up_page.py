@@ -29,6 +29,7 @@ class SignUpPage:
     LBL_INPUT_PWD_ERR_MSG: str = sign_up.LBL_INPUT_PWD_ERR_MSG
     LBL_INVALID_EMAIL_ERR_MSG: str = sign_up.LBL_INVALID_EMAIL_ERR_MSG
     LBL_INVALID_PWD_ERR_MSG: str = sign_up.LBL_INVALID_PWD_ERR_MSG
+    ALE_TOAST_EXISTED_EMAIL: str = sign_up.ALE_TOAST_EXISTED_EMAIL
 
     def __init__(self, driver):
         self.driver = driver
@@ -84,78 +85,121 @@ class SignUpPage:
 
     def verify_cc_number_err_msg(self) -> bool:
         if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INVALID_CC_NUMBER):
+            print("Error message found when User has NOT provided the cc number.")
             exp_err_msg: str = const.INVALID_CC_NUMBER
             act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INVALID_CC_NUMBER)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Error message SUCCESSFULLY verified when User has NOT provided the cc number.")
                 return True
             else:
+                print("Error message verified FAILED when User has NOT provided the cc number.")
                 return False
         else:
+            print("Error message found when User has NOT provided the cc number.")
             return False
 
     def verify_expired_date_err_msg(self) -> bool:
         if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INVALID_EXPIRED_DATE):
+            print("Error message found when User has NOT provided the expiration date of cc.")
             exp_err_msg: str = const.INVALID_EXPIRED_DATE
             act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INVALID_EXPIRED_DATE)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Error message SUCCESSFULLY verified when User has NOT provided the expiration date of cc.")
                 return True
             else:
+                print("Error message verified FAILED when User has NOT provided the expiration date of cc.")
                 return False
         else:
+            print("Error message found when User has NOT provided the expiration date of cc.")
             return False
 
     def verify_cvc_err_msg(self) -> bool:
         if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INVALID_CVC):
+            print("Error message found when User has NOT provided the cvc of cc.")
             exp_err_msg: str = const.INVALID_CVC
             act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INVALID_CVC)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Error message SUCCESSFULLY verified when User has NOT provided the cvc of cc.")
                 return True
             else:
+                print("Error message verified FAILED when User has NOT provided the cvc of cc.")
                 return False
         else:
+            print("Error message NOT found when User has NOT provided the cvc of cc.")
             return False
 
     # assertions for normal-user
     def verify_input_email_err_msg(self) -> bool:
         if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INPUT_EMAIL_ERR_MSG):
+            print("Error message found when User has NOT inputted the email.")
             exp_err_msg: str = const.INPUT_EMAIL_ERR_MSG
             act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INPUT_EMAIL_ERR_MSG)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Error message SUCCESSFULLY verified when User has NOT inputted the email.")
                 return True
             else:
+                print("Error message verified FAILED found when User has NOT inputted the email.")
                 return False
         else:
+            print("Error message NOT found when User has NOT inputted the email.")
             return False
 
     def verify_input_pwd_err_msg(self) -> bool:
         if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INPUT_PWD_ERR_MSG):
+            print("Error message found when User has NOT inputted the password.")
             exp_err_msg: str = const.INPUT_PWD_ERR_MSG
             act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INPUT_PWD_ERR_MSG)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Error message SUCCESSFULLY verified when User has NOT inputted the password.")
                 return True
             else:
+                print("Error message verified FAILED when User has NOT inputted the password.")
                 return False
         else:
+            print("Error message NOT found even when User has NOT inputted the password.")
             return False
 
     def verify_invalid_email_err_msg(self) -> bool:
         if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INVALID_EMAIL_ERR_MSG):
+            print("Error message of the invalid email found.")
             exp_err_msg: str = const.INVALID_EMAIL_ERR_MSG
             act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INVALID_EMAIL_ERR_MSG)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Error message of the invalid email SUCCESSFULLY verified.")
                 return True
             else:
+                print("Error message of the invalid email verified FAILED.")
                 return False
         else:
+            print("Error message of the invalid email NOT found.")
             return False
 
     def verify_invalid_pwd_err_msg(self) -> bool:
         if common_assertions.verify_element_is_visible(self, SignUpPage.LBL_INVALID_PWD_ERR_MSG):
-            exp_err_msg: str = const.INVALID_EMAIL_ERR_MSG
-            act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INVALID_EMAIL_ERR_MSG)
+            print("Error message of the invalid password found.")
+            exp_err_msg: str = const.INVALID_PWD_ERR_MSG
+            act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.LBL_INVALID_PWD_ERR_MSG)
             if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Error message of the invalid password SUCCESSFULLY verified.")
                 return True
             else:
+                print("Error message of the invalid password verified FAILED.")
                 return False
         else:
+            print("Error message of the invalid password NOT found.")
+            return False
+
+    def verify_existed_email_toast_presented(self) -> bool:
+        if common_assertions.verify_element_is_visible(self, SignUpPage.ALE_TOAST_EXISTED_EMAIL):
+            print("Toast found.")
+            exp_err_msg: str = const.EXISTED_EMAIL
+            act_err_msg: str = common_ui_actions.get_text_from_element(self, SignUpPage.ALE_TOAST_EXISTED_EMAIL)
+            if common_assertions.verify_string_is_equal(exp_err_msg, act_err_msg):
+                print("Toast SUCCESSFULLY verified.")
+                return True
+            else:
+                print("Toast verified FAILED.")
+                return False
+        else:
+            print("Toast NOT found.")
             return False

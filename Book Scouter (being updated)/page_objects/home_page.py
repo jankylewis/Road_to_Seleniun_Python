@@ -44,8 +44,10 @@ class HomePage:
 
     def verify_toast(self) -> bool:
         if HomePage.__verify_toast_is_visible(self) and HomePage.__verify_toast_content(self):
+            print("Toast SUCCESSFULLY verified.")
             return True
         else:
+            print("Toast verified FAILED.")
             return False
 
 

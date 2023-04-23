@@ -14,7 +14,12 @@ class ProfilePage:
         return common_ui_actions.get_text_from_element_by_attribute(self, ProfilePage.LBL_USER_EMAIl, constants.ATTRIBUTE_VALUE)
 
     def verify_user_email(self, exp_user_email: str) -> bool:
-        return common_assertions.verify_string_is_equal(exp_user_email, ProfilePage.__get_user_email(self))
+        if common_assertions.verify_string_is_equal(exp_user_email, ProfilePage.__get_user_email(self)):
+            print("Expected user email matched.")
+            return True
+        else:
+            print("Expected user email not matched.")
+            return False
 
 
 

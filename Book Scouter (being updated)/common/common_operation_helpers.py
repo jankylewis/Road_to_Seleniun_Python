@@ -1,14 +1,15 @@
 import random as r
+from common.common_assertions import CommonAssertions as common_assertions
 
 
 class CommonOperatorHelper:
-
     """
      generate a string of random characters comprising:
      -> letters
      -> numbers
      -> symbols
     """
+
     @staticmethod
     def randomizer(num_of_let: int, num_of_num: int, num_of_sym: int) -> str:
         letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
@@ -26,3 +27,16 @@ class CommonOperatorHelper:
 
         r.shuffle(sequence)
         return ''.join([str(element) for element in sequence])
+
+    @staticmethod
+    def log_test_case_status(tc_id: bytes, tc_status: str) -> object:
+        pass_status: str = "p"
+        failed_status: str = "f"
+        if common_assertions.verify_string_is_equal(exp_str=pass_status,
+                                                    act_str=tc_status.lower()):
+            print(f"\n*****/***** Test case {tc_id} was SUCCESSFUL! *****/*****\n")
+        elif common_assertions.verify_string_is_equal(exp_str=failed_status,
+                                                      act_str=tc_status.lower()):
+            print(f"\n*****/***** Test case {tc_id} was UNSUCCESSFUL! *****/*****\n")
+        else:
+            print("Inputted test case ID or status was not valid.")

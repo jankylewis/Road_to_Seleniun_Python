@@ -10,5 +10,5 @@ def setup():
     # LogGenerating.log_generating().info("*****/***** Chrome driver was initialized *****/*****")
     print("\n\n*****/***** Chrome driver was initialized *****/*****")
     common_ui_actions.maximize_popup(driver)
-    print("Popped up screen was maximized.")
+    print("\n*****/***** Popped up screen was maximized *****/*****")
     return driver
