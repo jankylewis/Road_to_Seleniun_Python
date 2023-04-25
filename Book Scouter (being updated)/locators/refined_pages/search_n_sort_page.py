@@ -3,7 +3,7 @@ class SearchNSortPage:
     those below captured for flow: search key causes errors
     """
     LBL_SEARCH_TITLE: str = "//h2[not(contains(@class, 'SearchTips'))]"
-    LBL_SEARCH_ERROR: str = "//p[contains(@class, 'ErrorText')]"
+    LBL_SEARCH_ERROR_DES: str = "//p[contains(@class, 'ErrorText')]"
     # happen when User's search key did not match any result
     LBL_SEARCH_TIPS: str = "//h2[contains(@class, 'SearchTips')]"
     LBL_SEARCH_NOT_FOUND: str = "//p[contains(@class, 'SearchText')]"

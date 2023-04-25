@@ -53,5 +53,7 @@ class HomePage:
             return False
 
     def execute_search(self, search_key):
+        __key_press: str = "enter"
         common_ui_actions.send_key_to_element(self, HomePage.TXT_SEARCH, search_key)
-        common_ui_actions.click_on_element(self, HomePage.BTN_SCOUT)
+        common_ui_actions.press_key_by_element(self, HomePage.TXT_SEARCH, key_received=__key_press)
+

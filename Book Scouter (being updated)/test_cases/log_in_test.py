@@ -7,7 +7,8 @@ from utilities.logger import LogGenerating
 from utilities.read_properties import ReadGlobalVariables as read_global_vars
 from common.common_operation_helpers import CommonOperatorHelper as common_ope
 from common.constants import Constants as const
-
+# importing setup fixture is a must
+from test_cases.abstract_test import setup
 
 @pytest.mark.usefixtures("setup")
 class Test_Log_In:

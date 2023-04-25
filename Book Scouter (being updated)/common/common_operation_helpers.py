@@ -30,13 +30,11 @@ class CommonOperatorHelper:
 
     @staticmethod
     def log_test_case_status(tc_id: bytes, tc_status: str) -> object:
-        pass_status: str = "p"
+        passed_status: str = "p"
         failed_status: str = "f"
-        if common_assertions.verify_string_is_equal(exp_str=pass_status,
-                                                    act_str=tc_status.lower()):
+        if passed_status == tc_status.lower():
             print(f"\n*****/***** Test case {tc_id} was SUCCESSFUL! *****/*****\n")
-        elif common_assertions.verify_string_is_equal(exp_str=failed_status,
-                                                      act_str=tc_status.lower()):
+        elif failed_status == tc_status.lower():
             print(f"\n*****/***** Test case {tc_id} was UNSUCCESSFUL! *****/*****\n")
         else:
             print("Inputted test case ID or status was not valid.")

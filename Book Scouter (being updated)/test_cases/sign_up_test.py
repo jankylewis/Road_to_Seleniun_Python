@@ -7,7 +7,7 @@ from page_objects.onboard_experience.profile_page import ProfilePage as profile_
 from page_objects.onboard_experience.sign_up_page import SignUpPage as sign_up
 from utilities.read_properties import ReadGlobalVariables as read_global_vars
 # must have to retrieve the setup method from fixture
-
+from test_cases.abstract_test import setup
 
 @pytest.mark.usefixtures("setup")
 class Test_Sign_Up:

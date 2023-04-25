@@ -1,5 +1,5 @@
+from selenium.webdriver.common import keys
 from selenium.webdriver.common.by import By
-
 from common.common_waitings import CommonWaitings
 from common.common_assertions import CommonAssertions
 from common.constants import Constants
@@ -7,9 +7,8 @@ from common.constants import Constants
 # press key associated with locators
 from selenium.webdriver.common.keys import Keys
 
-
 # press key without association with locators
-# from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.action_chains import ActionChains as actions
 
 
 class CommonUIActions:
@@ -44,13 +43,36 @@ class CommonUIActions:
         CommonWaitings.wait_element_until_visible(self, exp_locator, Constants.TIME_OUT_3S)
         return self.driver.find_element(By.XPATH, exp_locator).get_attribute(attribute_name)
 
-    """
-    key press
-    """
-
     # key press associated with specific elements
     def press_key_by_element(self, exp_locator: str, key_received: str):
         CommonWaitings.wait_element_until_visible(self, exp_locator, Constants.TIME_OUT_3S)
         if CommonAssertions.verify_string_is_equal(Constants.KEY_ENTER, key_received):
             self.driver.find_element(By.XPATH, exp_locator).send_keys(Keys.ENTER)
             print("Pressed enter.")
+        elif CommonAssertions.verify_string_is_equal(Constants.KEY_BACKSPACE, key_received):
+            self.driver.find_element(By.XPATH, exp_locator).send_keys(Keys.BACKSPACE)
+            print("Pressed backspace.")
+        elif CommonAssertions.verify_string_is_equal(Constants.KEY_TAB, key_received):
+            self.driver.find_element(By.XPATH, exp_locator).send_keys(Keys.TAB)
+            print("Pressed tab.")
+        elif CommonAssertions.verify_string_is_equal(Constants.KEY_SPACE, key_received):
+            self.driver.find_element(By.XPATH, exp_locator).send_keys(Keys.SPACE)
+            print("Pressed space.")
+        elif CommonAssertions.verify_string_is_equal(Constants.KEY_PAGE_UP, key_received):
+            self.driver.find_element(By.XPATH, exp_locator).send_keys(Keys.PAGE_UP)
+            print("Pressed page up.")
+        elif CommonAssertions.verify_string_is_equal(Constants.KEY_PAGE_DOWN, key_received):
+            self.driver.find_element(By.XPATH, exp_locator).send_keys(Keys.PAGE_DOWN)
+            print("Pressed page down.")
+        elif CommonAssertions.verify_string_is_equal(Constants.KEY_F5, key_received):
+            self.driver.find_element(By.XPATH, exp_locator).send_keys(Keys.F5)
+            print("Pressed F5.")
+        else:
+            print("Your key was not valid.")
+
+    # key press can be used without depending on specific elements
+    # def action_enter(self, action_received: str):
+    #     __actions = actions(self.driver)
+    #     if CommonAssertions.verify_string_is_equal(Constants.KEY_ENTER, action_received):
+    #         __actions.send_keys(self, keys.Keys.ENTER).perform(self)
+    #         print("Performed pressing enter.")
