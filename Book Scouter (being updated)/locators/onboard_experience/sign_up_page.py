@@ -1,4 +1,5 @@
 class SignUpPage:
+    # some locators have not been given the value
     TXT_EMAIL: str = "//input[contains(@name, 'email')]"
     TXT_PASSWORD: str = "//input[contains(@name, 'password')]"
     BTN_SHOW = ""

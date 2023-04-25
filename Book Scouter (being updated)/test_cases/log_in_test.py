@@ -1,13 +1,12 @@
 import pytest
 
-from page_objects.extended_pages.home_page import HomePage as home_page
+from page_objects.onboard_experience.home_page import HomePage as home_page
 from page_objects.onboard_experience.log_in_page import LogInPage as log_in_page
-from page_objects.extended_pages.profile_page import ProfilePage as profile_page
+from page_objects.onboard_experience.profile_page import ProfilePage as profile_page
 from utilities.logger import LogGenerating
 from utilities.read_properties import ReadGlobalVariables as read_global_vars
 from common.common_operation_helpers import CommonOperatorHelper as common_ope
 from common.constants import Constants as const
-from test_cases.abstract_test import setup
 
 
 @pytest.mark.usefixtures("setup")
@@ -17,7 +16,7 @@ class Test_Log_In:
     __user_password = read_global_vars.get_user_password()
     __wrong_user_email = str(0) + __user_email
     __wrong_user_password = str(0) + __user_password
-    __pass_stt: str = const.TC_PASS_STATUS
+    __passed_stt: str = const.TC_PASSED_STATUS
     __failed_stt: str = const.TC_FAILED_STATUS
     __function_test: str = const.TC_LOG_IN_FUNCTION
 
@@ -55,7 +54,7 @@ class Test_Log_In:
 
             # begin assertions
             if profile_page.verify_user_email(self, exp_user_email=self.__user_email):
-                common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+                common_ope.log_test_case_status(__tc_id, self.__passed_stt)
                 assert True
             else:
                 common_ope.log_test_case_status(__tc_id, self.__failed_stt)
@@ -91,7 +90,7 @@ class Test_Log_In:
 
         # begin assertions
         if log_in_page.verify_invalid_password_toast_is_presented(self):
-            common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+            common_ope.log_test_case_status(__tc_id, self.__passed_stt)
             assert True
         else:
             common_ope.log_test_case_status(__tc_id, self.__failed_stt)
@@ -124,7 +123,7 @@ class Test_Log_In:
 
         # begin assertions
         if log_in_page.verify_bad_credentials_toast_is_presented(self):
-            common_ope.log_test_case_status(__tc_id, tc_status=self.__pass_stt)
+            common_ope.log_test_case_status(__tc_id, tc_status=self.__passed_stt)
             assert True
         else:
             common_ope.log_test_case_status(__tc_id, tc_status=self.__failed_stt)
@@ -157,7 +156,7 @@ class Test_Log_In:
 
         # begin assertions
         if log_in_page.verify_bad_credentials_toast_is_presented(self):
-            common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+            common_ope.log_test_case_status(__tc_id, self.__passed_stt)
             assert True
         else:
             common_ope.log_test_case_status(__tc_id, self.__failed_stt)
@@ -197,7 +196,7 @@ class Test_Log_In:
         # begin assertions
         if log_in_page.verify_input_email_err_msg(self) \
                 and log_in_page.verify_input_pwd_err_msg(self):
-            common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+            common_ope.log_test_case_status(__tc_id, self.__passed_stt)
             assert True
         else:
             common_ope.log_test_case_status(__tc_id, self.__failed_stt)
@@ -230,7 +229,7 @@ class Test_Log_In:
 
         # begin assertions
         if log_in_page.verify_invalid_email_err_msg(self):
-            common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+            common_ope.log_test_case_status(__tc_id, self.__passed_stt)
             assert True
         else:
             common_ope.log_test_case_status(__tc_id, self.__failed_stt)

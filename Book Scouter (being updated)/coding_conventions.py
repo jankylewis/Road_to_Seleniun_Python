@@ -20,6 +20,9 @@
         ++ ERR = error
         ++ MSG = message
         ++ BR = browser
+        ++ DES = description
+        ++ BOX = box
+        ++ SEC = section
 
 
 - Class name: pascal case

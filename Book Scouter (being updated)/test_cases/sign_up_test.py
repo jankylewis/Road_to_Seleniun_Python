@@ -2,12 +2,11 @@ import pytest
 
 from common.common_operation_helpers import CommonOperatorHelper as common_ope
 from common.constants import Constants as const
-from page_objects.extended_pages.home_page import HomePage as home_page
-from page_objects.extended_pages.profile_page import ProfilePage as profile_page
+from page_objects.onboard_experience.home_page import HomePage as home_page
+from page_objects.onboard_experience.profile_page import ProfilePage as profile_page
 from page_objects.onboard_experience.sign_up_page import SignUpPage as sign_up
 from utilities.read_properties import ReadGlobalVariables as read_global_vars
 # must have to retrieve the setup method from fixture
-from test_cases.abstract_test import setup
 
 
 @pytest.mark.usefixtures("setup")
@@ -16,7 +15,7 @@ class Test_Sign_Up:
     __user_email = read_global_vars.get_user_email()
     __user_password = read_global_vars.get_user_password()
     __wrong_user_password = ""
-    __pass_stt: str = const.TC_PASS_STATUS
+    __passed_stt: str = const.TC_PASSED_STATUS
     __failed_stt: str = const.TC_FAILED_STATUS
     __function_test: str = const.TC_SIGN_UP_FUNCTION
 
@@ -47,7 +46,7 @@ class Test_Sign_Up:
 
             # begin assertions
             if profile_page.verify_user_email(self, exp_user_email=__exp_user_email):
-                common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+                common_ope.log_test_case_status(__tc_id, self.__passed_stt)
                 assert True
             else:
                 common_ope.log_test_case_status(__tc_id, self.__failed_stt)
@@ -90,7 +89,7 @@ class Test_Sign_Up:
 
             # begin assertions
             if profile_page.verify_user_email(self, exp_user_email=__exp_user_email):
-                common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+                common_ope.log_test_case_status(__tc_id, self.__passed_stt)
                 assert True
             else:
                 common_ope.log_test_case_status(__tc_id, self.__failed_stt)
@@ -138,7 +137,7 @@ class Test_Sign_Up:
                 if sign_up.verify_cc_number_err_msg(self) \
                         and sign_up.verify_expired_date_err_msg(self) \
                         and sign_up.verify_cvc_err_msg(self):
-                    common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+                    common_ope.log_test_case_status(__tc_id, self.__passed_stt)
                     assert True
             else:
                 common_ope.log_test_case_status(__tc_id, self.__failed_stt)
@@ -184,7 +183,7 @@ class Test_Sign_Up:
                 if sign_up.verify_cc_number_err_msg(self) \
                         and sign_up.verify_expired_date_err_msg(self) \
                         and sign_up.verify_cvc_err_msg(self):
-                    common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+                    common_ope.log_test_case_status(__tc_id, self.__passed_stt)
                     assert True
             else:
                 common_ope.log_test_case_status(__tc_id, self.__failed_stt)
@@ -218,7 +217,7 @@ class Test_Sign_Up:
 
         # assertions
         if sign_up.verify_existed_email_toast_presented(self):
-            common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+            common_ope.log_test_case_status(__tc_id, self.__passed_stt)
             assert True
         else:
             common_ope.log_test_case_status(__tc_id, self.__failed_stt)
@@ -253,7 +252,7 @@ class Test_Sign_Up:
 
         # begin assertions
         if sign_up.verify_invalid_email_err_msg(self):
-            common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+            common_ope.log_test_case_status(__tc_id, self.__passed_stt)
             assert True
         else:
             common_ope.log_test_case_status(__tc_id, self.__failed_stt)
@@ -288,7 +287,7 @@ class Test_Sign_Up:
 
         # begin assertions
         if sign_up.verify_invalid_pwd_err_msg(self):  # and sign_up.verify_input_email_err_msg(self):
-            common_ope.log_test_case_status(__tc_id, self.__pass_stt)
+            common_ope.log_test_case_status(__tc_id, self.__passed_stt)
             assert True
         else:
             common_ope.log_test_case_status(__tc_id, self.__failed_stt)

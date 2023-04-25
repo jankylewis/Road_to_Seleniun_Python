@@ -1,4 +1,5 @@
 class ProfilePage:
+    # some locators have not been given the value
     BTN_PROFILE = ""
     BTN_VENDORS = ""
     BTN_SUBSCRIPTION = ""

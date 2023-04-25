@@ -2,7 +2,7 @@ from common.common_assertions import CommonAssertions as common_assertions
 from common.common_ui_actions import CommonUIActions as common_ui_actions
 from common.common_waitings import CommonWaitings as common_waitings
 from common.constants import Constants
-from locators.extended_pages.home_page import HomePage as home
+from locators.onboard_experience.home_page import HomePage as home
 
 
 class HomePage:
@@ -11,6 +11,8 @@ class HomePage:
     DDI_ACCOUNT = home.DDI_ACCOUNT
     ALE_TOAST_LOGGED_IN_SUCCESSFULLY = home.ALE_TOAST_SUCCESSFULLY_LOGGED_IN
     BTN_SIGN_UP = home.BTN_SIGN_UP
+    TXT_SEARCH = home.TXT_SEARCH
+    BTN_SCOUT = home.BTN_SCOUT
 
     def __init__(self, driver):
         self.driver = driver
@@ -50,4 +52,6 @@ class HomePage:
             print("Toast verified FAILED.")
             return False
 
-
+    def execute_search(self, search_key):
+        common_ui_actions.send_key_to_element(self, HomePage.TXT_SEARCH, search_key)
+        common_ui_actions.click_on_element(self, HomePage.BTN_SCOUT)

@@ -1,12 +1,13 @@
 class HomePage:
+    # some of redundant locators shall be removed
     BTN_PRO_TOOLS: str = ""
     BTN_LOG_IN: str = "//button[@name = 'Log In' and contains(text(), 'Log In')]"
     BTN_SIGN_UP: str = "//button[@name = 'Sign Up' and contains(text(), 'Sign Up')]"
     BTN_BOOK_TO_BUY = ""
     BTN_BOOK_TO_SELL = ""
     BTN_BOOK_TO_RENT = ""
-    TXT_SEARCH = ""
-    BTN_SCOUT = ""
+    TXT_SEARCH = "//input[contains(@class, 'SearchInput')]"
+    BTN_SCOUT = "//button[contains(@class, 'SearchButton') and @name = 'scout']"
     HPL_FACEBOOK_ASSOCIATION = ""
     HPL_TIKTOK_ASSOCIATION = ""
     HPL_TWITTER_ASSOCIATION = ""
