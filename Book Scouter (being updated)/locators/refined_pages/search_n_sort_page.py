@@ -27,15 +27,19 @@ class SearchNSortPage:
     those below captured for flow: search key found and returned list of results if any of search key matched (may satisfy several criteria)
     """
     LBL_SEARCH_KEY_HIGHLIGHT: str = "//p[contains(@class, 'SearchTitleHighlight')]"
-    DDL_SORT_BY: str = ""
-    DDI_RELEVANCE: str
-    DDI_TITLE: str
-    DDI_AUTHOR: str
-    DDI_RELEASED: str
-    LBL_BOOK_TITLE: str = ""
-    LBL_BOOK_AUTHOR: str = ""
-    LBL_BOOK_RELEASED: str = ""
+    LBL_BOOK_TITLE: str = "//h2[contains(@class, 'BookTitle')]"
+    LBL_BOOK_AUTHOR: str = "//span[contains(@class, 'BookText')][preceding-sibling::strong[contains(text(), 'Author')]]"
+    LBL_BOOK_RELEASED: str = "//span[contains(@class, 'BookText')][preceding-sibling::strong[contains(text(), 'Released')]]"
     LBL_BOOK_ISBN: str = ""
+    """
+    those below for sort case
+    """
+    DDL_SORT_BY: str = "//div[contains(@aria-label, 'Select sort by')]"
+    DDI_RELEVANCE: str = "//ul[contains(@class, 'options')]//li[contains(text(), 'Relevance')]"
+    DDI_TITLE: str = "//ul[contains(@class, 'options')]//li[contains(text(), 'Title')]"
+    DDI_AUTHOR: str = "//ul[contains(@class, 'options')]//li[contains(text(), 'Author')]"
+    DDI_RELEASED: str = "//ul[contains(@class, 'options')]//li[contains(text(), 'Released')]"
+
 
 
 

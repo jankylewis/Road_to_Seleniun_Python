@@ -1,3 +1,5 @@
+import time
+
 import pytest
 
 from common.common_operation_helpers import CommonOperatorHelper as common_ope
@@ -46,7 +48,7 @@ class Test_Search:
 
     """
         test case: User provides search key that did not match any result
-        """
+    """
 
     def test_search_002(self, setup):
         __tc_id: str = "002"
@@ -60,8 +62,32 @@ class Test_Search:
 
         # take UI actions
         home_page.execute_search(self, __search_key)
-        waiter.sleep(self, 4)
+        # waiter.sleep(self, 4)
         if search_page.verify_err_no_matches(self):
+            common_ope.log_test_case_status(__tc_id, self.__passed_stt)
+            assert True
+        else:
+            common_ope.log_test_case_status(__tc_id, self.__failed_stt)
+            assert False
+
+    """
+        test case: User's search key matches results
+            + search result found by AUTHOR name
+    """
+
+    def test_search_003(self, setup):
+        __tc_id: str = "003"
+        __search_key: str = "kyle"
+
+        print(f"\n*****/***** {self.__function_test} - Test case {__tc_id}: *****/*****\n")
+
+        # setup test case by declaring instances n pages
+        self.driver = setup
+        self.driver.get(self.__base_url)
+
+        # take UI actions
+        home_page.execute_search(self, __search_key)
+        if search_page.verify_search_result_by_author(self, search_key_by_author=__search_key):
             common_ope.log_test_case_status(__tc_id, self.__passed_stt)
             assert True
         else:

@@ -29,5 +29,14 @@ class CommonAssertions:
             print(f"{exp_str} was equal to {act_str}")
             return True
         else:
-            print(f"{exp_str} was not equal to {act_str}")
+            print(f"{exp_str} was NOT equal to {act_str}")
+            return False
+
+    @staticmethod
+    def verify_string_is_contained(exp_str: str, exp_key_contained: str) -> bool:
+        if exp_key_contained in exp_str:
+            print(f"{exp_str} contained {exp_key_contained}")
+            return True
+        else:
+            print(f"{exp_str} did NOT contained {exp_key_contained}")
             return False

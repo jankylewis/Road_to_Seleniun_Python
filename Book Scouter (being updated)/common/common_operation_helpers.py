@@ -1,5 +1,6 @@
 import random as r
 from common.common_assertions import CommonAssertions as common_assertions
+import datetime as dt
 
 
 class CommonOperatorHelper:
@@ -38,3 +39,76 @@ class CommonOperatorHelper:
             print(f"\n*****/***** Test case {tc_id} was UNSUCCESSFUL! *****/*****\n")
         else:
             print("Inputted test case ID or status was not valid.")
+
+    @staticmethod
+    def compare_date_n_time(greater: str, smaller: str) -> bool:
+
+        gr_get_month: int = CommonOperatorHelper.__get_month(greater[0:3])
+        sm_get_month: int = CommonOperatorHelper.__get_month(smaller[0:3])
+
+        gr_slice_year: int = int(greater[8:12])
+        gr_slice_month: int = gr_get_month
+        gr_slice_date: int = int(greater[4:6])
+        sm_slice_year: int = int(smaller[8:12])
+        sm_slice_month: int = sm_get_month
+        sm_slice_date: int = int(smaller[4:6])
+
+        # print(f"gr_slice_year: {gr_slice_year}")
+        # print(f"gr_slice_month: {gr_slice_month}")
+        # print(f"gr_slice_date: {gr_slice_date}")
+        #
+        # print(f"sm_slice_year: {sm_slice_year}")
+        # print(f"sm_slice_month: {sm_slice_month}")
+        # print(f"sm_slice_date: {sm_slice_date}")
+
+        date_time_greater = dt.datetime(gr_slice_year, gr_slice_month, gr_slice_date)
+        date_time_smaller = dt.datetime(sm_slice_year, sm_slice_month, sm_slice_date)
+
+        if date_time_greater >= date_time_smaller:
+            print(f"{greater} >= {smaller}")
+            return True
+        else:
+            print(f"{greater} <= {smaller}")
+            return False
+
+    @staticmethod
+    def __get_month(month: str) -> int:
+        # months are abbreviated in declaration as a dictionary
+        abbr_month = {
+            "Jan": "01",
+            "Feb": "02",
+            "Mar": "03",
+            "Apr": "04",
+            "May": "05",
+            "Jun": "06",
+            "Jul": "07",
+            "Aug": "08",
+            "Sep": "09",
+            "Oct": "10",
+            "Nov": "11",
+            "Dec": "12"
+        }
+        if month == "Jan":
+            return int(abbr_month[month])
+        elif month == "Feb":
+            return int(abbr_month[month])
+        elif month == "Mar":
+            return int(abbr_month[month])
+        elif month == "Apr":
+            return int(abbr_month[month])
+        elif month == "May":
+            return int(abbr_month[month])
+        elif month == "Jun":
+            return int(abbr_month[month])
+        elif month == "July":
+            return int(abbr_month[month])
+        elif month == "Aug":
+            return int(abbr_month[month])
+        elif month == "Sep":
+            return int(abbr_month[month])
+        elif month == "Oct":
+            return int(abbr_month[month])
+        elif month == "Nov":
+            return int(abbr_month[month])
+        elif month == "Dec":
+            return int(abbr_month[month])

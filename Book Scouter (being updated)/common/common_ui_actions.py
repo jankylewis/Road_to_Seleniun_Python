@@ -1,6 +1,6 @@
 from selenium.webdriver.common import keys
-from selenium.webdriver.common.by import By
 from common.common_waitings import CommonWaitings
+from selenium.webdriver.common.by import By
 from common.common_assertions import CommonAssertions
 from common.constants import Constants
 
