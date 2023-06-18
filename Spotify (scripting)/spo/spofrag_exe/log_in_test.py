@@ -1,7 +1,9 @@
 import pytest
 from spo.spofrag_exe.abstract_test import test_init
-from spo.spofrag_utilities.prop_reader import ReadGlobalVar as reader
+from spo.spofrag_utilities.prop_reader_utils import ReadGlobalVar as reader
 from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
+from spo.spofrag_epic.functionality.log_in_page import LogInPage as log_in_page
+from spo.spofrag_common_handler.wait_handler import WaitHandler as waiter
 
 
 class Test_Log_In:
@@ -13,7 +15,9 @@ class Test_Log_In:
     __func = const.FUNC_LOG_IN
 
     """
-        test case 001: log in successfully to website with spot-on credentials 
+        test case 001: log in successfully to website: 
+            - with spot-on credentials
+            - leave remember me toggle unchecked 
     """
 
     def test_log_in_001(self, test_init):
@@ -24,12 +28,11 @@ class Test_Log_In:
             bypass this process. However, we do not need to repel the robot-recognized process
         """
         # fields declaration goes here
-        __tc_id: str = "001"
+        tc_id: str = "001"
         self.driver_factory = test_init
         self.driver_factory.get(self.__base_url)
 
         # log in to spotify
-        
-
-
-
+        log_in_page.log_in(self, self.__usr_email_or_username, self.__usr_pwd, False)
+        # waiter.force_wait(self, 100000000)
+        # verify

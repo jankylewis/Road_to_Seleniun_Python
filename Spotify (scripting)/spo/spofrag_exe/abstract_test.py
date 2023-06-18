@@ -1,7 +1,7 @@
 import pytest
 
 from selenium import webdriver
-from spo.spofrag_utilities.prop_reader import ReadGlobalVar as reader
+from spo.spofrag_utilities.prop_reader_utils import ReadGlobalVar as reader
 from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
 
 from webdriver_manager.opera import OperaDriverManager
