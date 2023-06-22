@@ -5,6 +5,7 @@ from spo.spofrag_epic.page_object.account_information_pom import AccountInformat
 from spo.spofrag_common_handler.assertion_handler import AssertionHandler as asserter
 from spo.spofrag_epic.model.user_information_model import UserInformationModel as usr_infor_model
 from spo.spofrag_utilities.prop_reader_utils import ReadGlobalVar as reader
+from selenium.webdriver.remote.webelement import *
 
 
 class LogInPage:
@@ -18,11 +19,18 @@ class LogInPage:
             user_password=reader.get_user_password()
         )
 
-    def log_in(self, usr_email_or_username, pwd, is_remembered: bool = True):
+    def log_in(self, usr_emai_or_username, pwd, is_remembered: bool = True):
         if not is_remembered:
-            if ui_handler.get_text_from_element_by_attribute(self, log_in_pom.elements_dict.get("TG_REMEMBER_ME"),
-                                                                 "defaultChecked"):
-                ui_handler.click_on_element(self, log_in_pom.elements_dict.get("TG_REMEMBER_ME"))
+            # if ui_handler.get_text_from_element_by_attribute(self, log_in_pom.elements_dict.get("TG_REMEMBER_ME"),
+            #                                                  "defaultChecked"):
+            if ui_handler.get_text_from_element_by_attribute(self, log_in_pom.get_tg_remember_me_df_checked(self),
+                                                             "defaultChecked"):
+                # ui_handler.click_on_element(self, log_in_pom.elements_dict.get("TG_REMEMBER_ME"))
+                # ui_handler.click_on_element(self, self.driver_factory.find_element(By.XPATH,
+                #                                  "//div[@data-testid = 'login-container']//input[@id = 'login-remember']//parent::label"))
+                ui_handler.click_on_element(self, log_in_pom.get_tg_remember_me(self))
+
+
 
         # ui_handler.send_key_to_element(self, log_in_pom.elements_dict.get("TXT_EMAIL_OR_USERNAME"),
         #                                usr_email_or_username)

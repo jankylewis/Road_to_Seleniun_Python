@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from spo.spofrag_exe.abstract_test import test_init
 from spo.spofrag_utilities.prop_reader_utils import ReadGlobalVar as reader
@@ -36,3 +38,4 @@ class Test_Log_In:
         log_in_page.log_in(self, self.__usr_email_or_username, self.__usr_pwd, False)
         # waiter.force_wait(self, 100000000)
         # verify
+        waiter.force_wait(self, 3.5)

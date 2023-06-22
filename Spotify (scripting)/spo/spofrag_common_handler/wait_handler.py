@@ -5,12 +5,13 @@ import selenium.webdriver.support.expected_conditions as ec
 from selenium.webdriver.support.expected_conditions import staleness_of
 from selenium.webdriver.common.by import By
 from contextlib import contextmanager
+from selenium.webdriver.remote.webelement import *
 from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
 
 
 class WaitHandler:
 
-    def force_wait(self, time_out: int):
+    def force_wait(self, time_out: float):
         # by seconds
         time.sleep(time_out)
 
@@ -20,6 +21,8 @@ class WaitHandler:
         :rtype: object
         """
         return waiter(self, time_out).until(ec.visibility_of_element_located(exp_element))
+        # return waiter(self, time_out).until(ec.presence_of_element_located(exp_element))
+
 
     def wait_element_until_clickable(self, exp_element: By, time_out: int) -> object:
         """

@@ -6,6 +6,7 @@ from spo.spofrag_common_handler.wait_handler import WaitHandler as waiter
 from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
 from spo.spofrag_common_handler.assertion_handler import AssertionHandler as asserter
 from selenium.webdriver.remote.webelement import *
+from spo.spofrag_utilities.date_time_utils import DateTimeHandler as date_utils
 
 
 class UIActionHandler:
@@ -18,17 +19,23 @@ class UIActionHandler:
         js_scrolling = "arguments[0].scrollIntoView()"
         self.driver_factory.execute_script(js_scrolling, exp_element)
 
-    def click_until_clickable(self, exp_element) -> bool:
+    def click_until_clickable(self, exp_element: WebElement) -> bool:
         is_clickable = False
-        start_time = self.get_current_time_in_millis()
         retry = 1
+
+        # unchangeable var
+        end_min: int = date_utils.get_minute_now() + const.TIME_OUT_10S
         if exp_element:
-            while not is_clickable and not self.is_time_out(start_time, const.TIME_OUT_10S):
+            # UIActionHandler.scroll_into_view(self, exp_element)
+            while not is_clickable and not date_utils.is_time_out(date_utils.get_date_time_now(), end_min):
                 try:
                     exp_element.click()
                     is_clickable = True
                 except (ElementNotInteractableException, ElementClickInterceptedException) as exception:
                     retry += 1
+
+                if retry <= 3:
+                    break
         return is_clickable
 
     def click_on_element(self, exp_element: WebElement):
@@ -46,7 +53,7 @@ class UIActionHandler:
         exp_element = waiter.wait_element_until_visible(self.driver_factory, exp_element, const.TIME_OUT_3S)
         return exp_element.text
 
-    def get_text_from_element_by_attribute(self, exp_element: By, attribute_name: str) -> str:
+    def get_text_from_element_by_attribute(self, exp_element: WebElement, attribute_name: str) -> str:
         exp_element = waiter.wait_element_until_visible(self.driver_factory, exp_element, const.TIME_OUT_3S)
 
         # attribute_name can be "value"
