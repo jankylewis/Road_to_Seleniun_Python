@@ -1,6 +1,6 @@
 from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
 from spo.spofrag_common_handler.wait_handler import WaitHandler as waiter
-
+from selenium.webdriver.remote.webelement import *
 from selenium.webdriver.common.by import By
 
 
@@ -10,8 +10,8 @@ class AssertionHandler:
     def __init__(self, driver_factory):
         self.driver_factory = driver_factory
 
-    def verify_element_is_visible(self, exp_element) -> bool:
-        waiter.wait_element_until_visible(self, exp_element, const.TIME_OUT_3S)
+    def verify_element_is_visible(self, exp_element: WebElement) -> bool:
+        exp_element = waiter.wait_element_until_visible(self, exp_element, const.TIME_OUT_3S)
         return exp_element.is_displayed()
 
     @staticmethod

@@ -15,7 +15,7 @@ class WaitHandler:
         # by seconds
         time.sleep(time_out)
 
-    def wait_element_until_visible(self, exp_element: By, time_out: int) -> object:
+    def wait_element_until_visible(self, exp_element: WebElement, time_out: int = const.TIME_OUT_5S) -> object:
         """
 
         :rtype: object
@@ -23,8 +23,7 @@ class WaitHandler:
         return waiter(self, time_out).until(ec.visibility_of_element_located(exp_element))
         # return waiter(self, time_out).until(ec.presence_of_element_located(exp_element))
 
-
-    def wait_element_until_clickable(self, exp_element: By, time_out: int) -> object:
+    def wait_element_until_clickable(self, exp_element: WebElement, time_out: int = const.TIME_OUT_5S) -> object:
         """
 
         :param time_out:
