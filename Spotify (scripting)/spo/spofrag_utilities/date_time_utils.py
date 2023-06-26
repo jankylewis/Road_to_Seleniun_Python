@@ -1,24 +1,8 @@
 from datetime import datetime
 from enum import Enum
-import pandas as pd
-from pandas import Series, Timestamp
 
 
 class DateTimeHandler:
-
-    @staticmethod
-    def verify_datetime(act_date: str, exp_date: str) -> bool:
-        is_checked: bool = False
-        act_form: Series | Timestamp | Timestamp = pd.to_datetime(act_date)
-        exp_form: Series | Timestamp | Timestamp = pd.to_datetime(exp_date)
-
-        if act_form.day == exp_form.day and act_form.month == exp_form.month and act_form.year == exp_form.year:
-            is_checked = True
-        else:
-            is_checked = False
-
-        return is_checked
-
     @staticmethod
     def is_time_out(start_time: datetime, time_out: int) -> bool:
         stop: int = int(DateTimeHandler.get_minute(start_time)) + time_out

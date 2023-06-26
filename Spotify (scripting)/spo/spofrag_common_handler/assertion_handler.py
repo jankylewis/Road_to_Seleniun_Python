@@ -2,6 +2,8 @@ from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as 
 from spo.spofrag_common_handler.wait_handler import WaitHandler as waiter
 from selenium.webdriver.remote.webelement import *
 from selenium.webdriver.common.by import By
+import pandas as pd
+from pandas import Series, Timestamp
 
 
 class AssertionHandler:
@@ -11,7 +13,9 @@ class AssertionHandler:
         self.driver_factory = driver_factory
 
     def verify_element_is_visible(self, exp_element: WebElement) -> bool:
-        exp_element = waiter.wait_element_until_visible(self, exp_element, const.TIME_OUT_3S)
+        exp_element = waiter.wait_element_until_visible(
+            self, exp_element, const.TIME_OUT_3S
+        )
         return exp_element.is_displayed()
 
     @staticmethod
@@ -32,9 +36,30 @@ class AssertionHandler:
             print(f"{exp_str} contained {str_to_be_contained}")
             return True
         else:
-            print(f"Expected {exp_str} to contain {str_to_be_contained} but found False")
+            print(
+                f"Expected {exp_str} to contain {str_to_be_contained} but found False"
+            )
             return False
 
     def is_displayed(self, exp_element: By) -> bool:
-        exp_element = waiter.wait_element_until_visible(self.driver_factory, exp_element, const.TIME_OUT_3S)
+        exp_element = waiter.wait_element_until_visible(
+            self.driver_factory, exp_element, const.TIME_OUT_3S
+        )
         return exp_element.is_selected()
+
+    @staticmethod
+    def verify_datetime(exp_date: str, act_date: str) -> bool:
+        is_checked: bool = False
+        act_form: Series | Timestamp | Timestamp = pd.to_datetime(act_date)
+        exp_form: Series | Timestamp | Timestamp = pd.to_datetime(exp_date)
+
+        if (
+            act_form.day == exp_form.day
+            and act_form.month == exp_form.month
+            and act_form.year == exp_form.year
+        ):
+            is_checked = True
+        else:
+            is_checked = False
+
+        return is_checked

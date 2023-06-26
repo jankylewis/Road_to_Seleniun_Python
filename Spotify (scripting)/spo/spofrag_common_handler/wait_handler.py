@@ -32,7 +32,7 @@ class WaitHandler:
         return waiter(self, time_out).until(ec.element_to_be_clickable(exp_element))
 
     @contextmanager
-    def wait_for_page_fully_loaded(self, time_out: const.MAX_TIME_OUT) -> object:
+    def wait_for_page_fully_loaded(self, time_out=const.MAX_TIME_OUT) -> object:
         previous_page = self.find_element(By.TAG_NAME, 'html')
         yield
         waiter(self, time_out).until(staleness_of(previous_page))

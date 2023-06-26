@@ -2,7 +2,8 @@ import pytest
 
 from selenium import webdriver
 
-from selenium.webdriver import ChromeOptions, \
+from selenium.webdriver import \
+    ChromeOptions, \
     FirefoxOptions, \
     WebKitGTKOptions, \
     IeOptions, \
@@ -21,27 +22,37 @@ def test_init():
 
 
 def general_setup():
-    DriverManager.driver_factory_used = DriverManager.produce_driver()
+    __driver_produced = DriverManager.produce_driver()
+    DriverManager.set_driver_factory(__driver_produced)
     DriverManager.driver_factory_used.maximize_window()
 
 
 def general_teardown():
-    if DriverManager.driver_factory_used is not None:
-        DriverManager.driver_factory_used.quit()
-        # print("\n\n\n\n Log to console \n\n\n\n", CookiesManager.get_all_cookies(DriverManager.driver_factory_used))
-        # CookiesManager.get_all_cookies(DriverManager.driver_factory_used)
+    __driver_produced = DriverManager.driver_factory_used
+    if __driver_produced is not None:
+        CookiesManager.delete_all_cookies(__driver_produced)
+        __driver_produced.quit()
 
 
 class CookiesManager:
-    # cookies_list: list[dict]
+    __cookies_list: list = None
 
     @staticmethod
-    def get_all_cookies(driver_factory: webdriver):
-        all_cookies = driver_factory.get_cookies()
-        cookies_dict = {}
-        for cookie in all_cookies:
-            cookies_dict[cookie['name']] = cookie['value']
-        print("\n\n\n\n Log to console \n\n\n\n", cookies_dict)
+    def get_all_cookies(driver_factory: webdriver) -> list:
+        CookiesManager.cookies_list = driver_factory.get_cookies()
+        return CookiesManager.cookies_list
+
+    @staticmethod
+    def delete_all_cookies(driver_factory: webdriver):
+        cookies_used: list = CookiesManager.__cookies_list \
+            if CookiesManager.__cookies_list is not None \
+            else CookiesManager.get_all_cookies(driver_factory)
+
+        if cookies_used is not None:
+            driver_factory.execute_cdp_cmd('Storage.clearDataForOrigin', {
+                "origin": '*',
+                "storageTypes": 'all',
+            })
 
 
 class DriverManager:
@@ -129,16 +140,21 @@ class DriverManager:
 
         return opts
 
-    # specially-designed for chrome br
+    # specially-designed for chrome br due to the prioritized br
     @staticmethod
     def produce_chrome_options() -> ChromeOptions:
         opts = webdriver.ChromeOptions()
-        opts.add_argument('--disable-blink-features=AutomationControlled')
-        opts.add_argument("--proxy-server='direct://'")
+        opts.add_argument("--disable-blink-features=AutomationControlled")
+        opts.add_argument("--proxy-server='direct://")
         opts.add_argument("--proxy-bypass-list=*")
-        opts.add_argument('--ignore-certificate-errors')
-        opts.add_argument('--proxy-server=IP_ADRESS:PORT')
+        opts.add_argument("--ignore-certificate-errors")
+        opts.add_argument("--proxy-server=IP_ADRESS:PORT")
+
         # opts.add_argument('headless')
+
+        # opts.add_argument("--remote-debugging-port=0")
+        opts.add_argument("--no-sandbox")
+        # opts.add_argument("--disable-dev-shm-usage")
 
         return opts
 

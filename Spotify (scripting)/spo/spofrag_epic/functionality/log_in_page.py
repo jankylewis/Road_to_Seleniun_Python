@@ -22,6 +22,6 @@ class LogInPage(log_in_pom):
             ui_handler.get_value_from_element_by_attribute(self, log_in_pom.get_tg_remember_me_df_checked(self),
                                                            "defaultChecked"))
 
-        if df_checking != is_remembered:
+        if df_checking is not is_remembered:
             ui_handler.scroll_into_element_by_js(self, log_in_pom.get_tg_remember_me(self))
             ui_handler.click_on_element(self, log_in_pom.get_tg_remember_me(self))
