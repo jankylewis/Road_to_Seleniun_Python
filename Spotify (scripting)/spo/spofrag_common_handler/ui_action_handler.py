@@ -1,7 +1,6 @@
 from selenium.common import *
 
 from selenium.webdriver.common.keys import Keys as key
-# from selenium.webdriver.common.by import By
 from spo.spofrag_common_handler.wait_handler import WaitHandler as waiter
 from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
 from spo.spofrag_common_handler.assertion_handler import AssertionHandler as asserter
@@ -26,6 +25,7 @@ class UIActionHandler:
         # unchangeable var
         end_min: int = date_utils.get_minute_now() + const.TIME_OUT_10S
         if exp_element:
+
             # UIActionHandler.scroll_into_view(self, exp_element)
             while not is_clickable and not date_utils.is_time_out(date_utils.get_date_time_now(), end_min):
                 try:
@@ -49,7 +49,8 @@ class UIActionHandler:
         exp_element.send_keys(exp_msg)
 
     def get_text_from_element(self, exp_element: WebElement) -> str:
-        exp_element = waiter.wait_element_until_visible(self.driver_factory, exp_element, const.TIME_OUT_3S)
+        exp_element = waiter.wait_element_until_visible(self.driver_factory, exp_element)
+
         return exp_element.text
 
     def get_value_from_element_by_attribute(self, exp_element: WebElement, attribute_name: str) -> str:
@@ -66,4 +67,5 @@ class UIActionHandler:
 
     def click_toggle(self, exp_toggle: WebElement, is_checked: bool = True) -> bool:
         exp_toggle = waiter.wait_element_until_visible(self.driver_factory, exp_toggle, const.TIME_OUT_3S)
+
         return self.driver_factory.find_element(exp_toggle).is_selected()

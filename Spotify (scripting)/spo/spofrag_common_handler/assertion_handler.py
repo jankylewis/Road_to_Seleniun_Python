@@ -12,10 +12,10 @@ class AssertionHandler:
     def __init__(self, driver_factory):
         self.driver_factory = driver_factory
 
-    def verify_element_is_visible(self, exp_element: WebElement) -> bool:
-        exp_element = waiter.wait_element_until_visible(
-            self, exp_element, const.TIME_OUT_3S
-        )
+    def verify_element_is_visible(self, exp_element: WebElement, time_out: int = const.TIME_OUT_3S,
+                                  is_long_wait: bool = False) -> bool:
+        exp_element = waiter.wait_element_until_visible(self, exp_element, time_out, is_long_wait)
+
         return exp_element.is_displayed()
 
     @staticmethod
@@ -54,12 +54,14 @@ class AssertionHandler:
         exp_form: Series | Timestamp | Timestamp = pd.to_datetime(exp_date)
 
         if (
-            act_form.day == exp_form.day
-            and act_form.month == exp_form.month
-            and act_form.year == exp_form.year
+                act_form.day == exp_form.day
+                and act_form.month == exp_form.month
+                and act_form.year == exp_form.year
         ):
+            print(f"{exp_date} was equal to {act_date}")
             is_checked = True
         else:
+            print(f"Expected {exp_date} to be equal to {act_date} but found False")
             is_checked = False
 
         return is_checked

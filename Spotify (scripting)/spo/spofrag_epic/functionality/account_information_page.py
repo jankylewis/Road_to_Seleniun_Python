@@ -1,6 +1,9 @@
 from spo.spofrag_epic.model.user_information_model import (
     UserInformationModel as user_model,
 )
+
+from selenium.webdriver.common.by import By
+
 from spo.spofrag_common_handler.wait_handler import WaitHandler as waiter
 from spo.spofrag_common_handler.ui_action_handler import UIActionHandler as ui_handler
 from spo.spofrag_epic.page_object.account_information_pom import (
@@ -8,6 +11,9 @@ from spo.spofrag_epic.page_object.account_information_pom import (
 )
 from spo.spofrag_common_handler.assertion_handler import AssertionHandler as asserter
 from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
+
+from selenium.webdriver.support.ui import WebDriverWait
+import selenium.webdriver.support.expected_conditions as ec
 
 
 class AccountInformationPage:
@@ -20,33 +26,23 @@ class AccountInformationPage:
         __is_check: bool = False
 
         waiter.wait_for_page_fully_loaded(AccountInformationPage.driver_factory)
-        # waiter.wait_element_until_visible(
-        #     AccountInformationPage.driver_factory,
-        #     AccountInformationPOM.elements_dict.get("LBL_EMAIL_OR_USERNAME"),
-        #     const.TIME_OUT_10S,
-        # )
-        waiter.force_wait(self, 10.5)
 
-        act_usr_email_or_username: str = ui_handler.get_text_from_element(
-            self, account_pom.get_lbl_email_or_username(self)
-        )
-        act_dob: str = ui_handler.get_text_from_element(
-            self, account_pom.get_lbl_dob(self)
-        )
-        act_nation: str = ui_handler.get_text_from_element(
-            self, account_pom.get_lbl_nation(self)
-        )
+        waiter.wait_element_until_visible(self.driver_factory, (By.XPATH, "//tr[2]//td[2]"),
+                                          time_out=const.TIME_OUT_15S,
+                                          is_long_wait=True)
 
-        # verifying
-        if (
-            asserter.verify_string_is_equal(
-                user_model.get_user_email_or_username(self), act_usr_email_or_username
-            )
-            and asserter.verify_datetime(user_model.get_user_dob(self), act_dob)
-            and asserter.verify_string_is_equal(
-                user_model.get_user_nation(self), act_nation
-            )
-        ):
+        act_usr_email_or_username: str = ui_handler.get_text_from_element(self,
+                                                                          exp_element=account_pom.get_lbl_email_or_username(
+                                                                              self))
+        act_dob: str = ui_handler.get_text_from_element(self, account_pom.get_lbl_dob(self))
+        act_nation: str = ui_handler.get_text_from_element(self, account_pom.get_lbl_nation(self))
+
+        # verifying whether User successfully logged in or not
+        if (asserter.verify_string_is_equal(__user_model.get_user_email_or_username(), act_usr_email_or_username)
+                and asserter.verify_datetime(__user_model.get_user_dob(), act_dob)
+                and asserter.verify_string_is_equal(__user_model.get_user_nation(), act_nation)):
+
             return not __is_check
         else:
+
             return __is_check

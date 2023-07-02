@@ -1,5 +1,5 @@
 from datetime import datetime
-from spo.spofrag_utilities.data_faker import FakeDateGenerator as faker
+from spo.spofrag_utilities.data_faker import FakeDataGenerator as faker
 
 
 class UserInformationModel:
