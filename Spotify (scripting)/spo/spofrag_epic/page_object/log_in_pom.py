@@ -24,31 +24,22 @@ class LogInPOM:
     }
 
     def get_tg_remember_me(self) -> WebElement:
-        if asserter.verify_element_is_visible(
-                self.driver_factory, LogInPOM.elements_dict.get("TG_REMEMBER_ME")
-        ):
+        if asserter.verify_element_is_visible(self.driver_factory, LogInPOM.elements_dict.get("TG_REMEMBER_ME")):
             return LogInPOM.elements_dict.get("TG_REMEMBER_ME")
 
     def get_tg_remember_me_df_checked(self) -> WebElement:
-        if asserter.verify_element_is_visible(
-                self.driver_factory, LogInPOM.elements_dict.get("TG_REMEMBER_ME_DF_CHECKED")
-        ):
+        if asserter.verify_element_is_visible(self.driver_factory,
+                                              LogInPOM.elements_dict.get("TG_REMEMBER_ME_DF_CHECKED")):
             return LogInPOM.elements_dict.get("TG_REMEMBER_ME_DF_CHECKED")
 
     def get_txt_email_or_username(self) -> WebElement:
-        if asserter.verify_element_is_visible(
-                self.driver_factory, LogInPOM.elements_dict.get("TXT_EMAIL_OR_USRNAME")
-        ):
+        if asserter.verify_element_is_visible(self.driver_factory, LogInPOM.elements_dict.get("TXT_EMAIL_OR_USRNAME")):
             return LogInPOM.elements_dict.get("TXT_EMAIL_OR_USRNAME")
 
     def get_txt_password(self) -> WebElement:
-        if asserter.verify_element_is_visible(
-                self.driver_factory, LogInPOM.elements_dict.get("TXT_PWD")
-        ):
+        if asserter.verify_element_is_visible(self.driver_factory, LogInPOM.elements_dict.get("TXT_PWD")):
             return LogInPOM.elements_dict.get("TXT_PWD")
 
     def get_btn_login(self) -> WebElement:
-        if asserter.verify_element_is_visible(
-                self.driver_factory, LogInPOM.elements_dict.get("BTN_LOG_IN")
-        ):
+        if asserter.verify_element_is_visible(self.driver_factory, LogInPOM.elements_dict.get("BTN_LOG_IN")):
             return LogInPOM.elements_dict.get("BTN_LOG_IN")

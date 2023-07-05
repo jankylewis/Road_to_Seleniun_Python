@@ -1,7 +1,6 @@
 from selenium.webdriver.remote.webelement import *
 from spo.spofrag_common_handler.assertion_handler import AssertionHandler as asserter
 from spo.spofrag_epic.page_object.abstract_pom import Locator_Type as locator_type
-from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
 
 
 class AccountInformationPOM:
@@ -18,16 +17,18 @@ class AccountInformationPOM:
     }
 
     def get_lbl_email_or_username(self) -> object:
-        element_situated = AccountInformationPOM.elements_dict.get("LBL_EMAIL_OR_USERNAME")
-        if asserter.verify_element_is_visible(self.driver_factory, exp_element=element_situated):
-            return element_situated
+        if asserter.verify_element_is_visible(self.driver_factory, exp_element=AccountInformationPOM.elements_dict.get(
+                "LBL_EMAIL_OR_USERNAME")):
+            return AccountInformationPOM.elements_dict.get("LBL_EMAIL_OR_USERNAME")
 
     def get_lbl_dob(self) -> WebElement:
-        element_situated: WebElement = AccountInformationPOM.elements_dict.get("LBL_DOB")
-        if asserter.verify_element_is_visible(self.driver_factory, exp_element=element_situated):
-            return element_situated
+        AccountInformationPOM.elements_dict.get("LBL_DOB")
+        if asserter.verify_element_is_visible(self.driver_factory,
+                                              exp_element=AccountInformationPOM.elements_dict.get("LBL_DOB")):
+            return AccountInformationPOM.elements_dict.get("LBL_DOB")
 
     def get_lbl_nation(self) -> WebElement:
-        element_situated: WebElement = AccountInformationPOM.elements_dict.get("LBL_NATION")
-        if asserter.verify_element_is_visible(self.driver_factory, exp_element=element_situated):
-            return element_situated
+
+        if asserter.verify_element_is_visible(self.driver_factory,
+                                              exp_element=AccountInformationPOM.elements_dict.get("LBL_NATION")):
+            return AccountInformationPOM.elements_dict.get("LBL_NATION")

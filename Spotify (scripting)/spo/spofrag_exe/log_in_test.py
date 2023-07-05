@@ -1,7 +1,6 @@
-import time
-
-from spo.spofrag_exe.abstract_test import test_flow
-from spo.spofrag_exe.abstract_test import DriverManager as driver_manager
+from selenium import webdriver
+from spo.spofrag_exe.abstract_test import test_factory
+from spo.spofrag_exe.abstract_test import driver_manager, AbstractTest
 from spo.spofrag_utilities.prop_reader_utils import ReadGlobalVar as reader
 from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
 from spo.spofrag_epic.functionality.log_in_page import LogInPage as log_in_page
@@ -9,10 +8,13 @@ from spo.spofrag_epic.model.user_information_model import UserInformationModel a
 from spo.spofrag_epic.functionality.account_information_page import AccountInformationPage as account_page
 
 
-class Test_Log_In:
+class Test_Log_In(AbstractTest):
+    __driver_factory: webdriver = None
+
     __base_url = reader.get_app_url() + const.LOG_IN_PATH
     __usr_email_or_username = reader.get_user_email_or_username()
     __usr_pwd = reader.get_user_password()
+
     __passed_stt = const.TC_PASSED_STT
     __failed_stt = const.TC_FAILED_STT
     __func = const.FUNC_LOG_IN
@@ -23,7 +25,7 @@ class Test_Log_In:
             - leave remember me toggle unchecked 
     """
 
-    def test_log_in_001(self, test_flow):
+    def test_log_in_001(self, test_factory):
         """
         if we log in to system from an automated script and driver is generated from
         selenium webdriver -> it also generates a robotic IP address leading to
@@ -47,13 +49,8 @@ class Test_Log_In:
         else:
             assert False
 
-        time.sleep(10000000)
-
     @property
     def produce_user_model(self) -> user_model:
 
-        return user_model(
-            user_email_or_username=reader.get_user_email_or_username(),
-            user_dob=reader.get_user_dob(),
-            user_nation=reader.get_user_nation(),
-        )
+        return user_model(user_email_or_username=reader.get_user_email_or_username(), user_dob=reader.get_user_dob(),
+                          user_nation=reader.get_user_nation())

@@ -12,9 +12,6 @@ from spo.spofrag_epic.page_object.account_information_pom import (
 from spo.spofrag_common_handler.assertion_handler import AssertionHandler as asserter
 from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
 
-from selenium.webdriver.support.ui import WebDriverWait
-import selenium.webdriver.support.expected_conditions as ec
-
 
 class AccountInformationPage:
     driver_factory = None

@@ -5,6 +5,7 @@ from spo.spofrag_utilities.data_type_utils import DataTypeHandler as data_type_h
 
 class LogInPage(log_in_pom):
     check_passed = False
+    driver_factory = None
 
     def __init__(self, driver_factory):
         super().__init__(driver_factory)
