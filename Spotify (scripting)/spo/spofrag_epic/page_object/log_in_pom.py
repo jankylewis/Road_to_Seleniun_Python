@@ -1,6 +1,7 @@
-from spo.spofrag_epic.page_object.abstract_pom import Locator_Type as locator_type
+from spo.spofrag_epic.page_object.abstract_pom import LocatorType as locator_type
 from selenium.webdriver.remote.webelement import *
 from spo.spofrag_common_handler.assertion_handler import AssertionHandler as asserter
+from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
 
 
 class LogInPOM:
@@ -21,7 +22,16 @@ class LogInPOM:
             locator_type.get_xpath_type(),
             "//div[@data-testid = 'login-container']//input[@id = 'login-remember']",
         ),
+        "TXT_ERR_MSG_OF_WRONG_PWD": (locator_type.get_xpath_type(), "//span[contains(@class, 'Message')]")
     }
+
+    def get_txt_err_msg_of_wrong_pwd(self) -> WebElement:
+        if asserter.verify_element_is_visible(self.driver_factory,
+                                              exp_element=LogInPOM.elements_dict.get("TXT_ERR_MSG_OF_WRONG_PWD"),
+                                              time_out=const.TIME_OUT_10S,
+                                              is_long_wait=True):
+
+            return LogInPOM.elements_dict.get("TXT_ERR_MSG_OF_WRONG_PWD")
 
     def get_tg_remember_me(self) -> WebElement:
         if asserter.verify_element_is_visible(self.driver_factory, LogInPOM.elements_dict.get("TG_REMEMBER_ME")):

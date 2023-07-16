@@ -1,4 +1,11 @@
 class Constant:
+    # fixture scopes
+    FUNCTION_SCOPE: str = "function"
+    CLASS_SCOPE: str = "class"
+    MODULE_SCOPE: str = "module"
+    PACKAGE_SCOPE: str = "package"
+    SESSION_SCOPE: str = "session"
+
     # br types
     CHROME_BR: str = "chrome"
     FIREFOX_BR: str = "firefox"
@@ -19,8 +26,8 @@ class Constant:
     MAX_TIME_OUT: int = 30
 
     # test case statuses
-    TC_PASSED_STT: str = "p"
-    TC_FAILED_STT: str = "f"
+    TC_PASSED_STT: str = "PASSED"
+    TC_FAILED_STT: str = "FAILED"
 
     # function named
     FUNC_LOG_IN: str = "Log in"

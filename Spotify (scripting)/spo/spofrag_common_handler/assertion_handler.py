@@ -4,6 +4,7 @@ from selenium.webdriver.remote.webelement import *
 from selenium.webdriver.common.by import By
 import pandas as pd
 from pandas import Series, Timestamp
+from spo.spofrag_utilities.test_utils.logs import Logging as log_utils
 
 
 class AssertionHandler:
@@ -17,6 +18,19 @@ class AssertionHandler:
         exp_element = waiter.wait_element_until_visible(self, exp_element, time_out, is_long_wait)
 
         return exp_element.is_displayed()
+
+    @staticmethod
+    def handle_test_assertion(test_name: str, test_stt: str):
+        if test_stt is const.TC_PASSED_STT:
+            log_utils.log_test_stt(test_name=test_name,
+                                   test_stt=const.TC_PASSED_STT)
+            assert True
+        elif test_stt is const.TC_FAILED_STT:
+            log_utils.log_test_stt(test_name=test_name,
+                                   test_stt=const.TC_FAILED_STT)
+            assert False
+        else:
+            raise AssertionError
 
     @staticmethod
     def verify_string_is_equal(exp_str: str, act_str: str) -> bool:
@@ -65,3 +79,36 @@ class AssertionHandler:
             is_checked = False
 
         return is_checked
+
+    #     __log = log_utils()
+    #
+    #     # expectation is receiving log_type as an enum value
+    #     @classmethod
+    #     def log_af_assertions(cls,
+    #                           test_stt: str,
+    #                           test_name: str = None,
+    #                           log_type: str = msg_const.get_informative_type(),
+    #                           log_msg: str = None):
+    #         is_passed: bool = False
+    #
+    #         # checking log_type
+    #         if log_type is msg_const.get_informative_type():
+    #             print("\n")
+    #             print("1")
+    #             log = log_utils()
+    #             print("LOG INFOR: " + str(log.log_infor(log_msg=f"{test_name} -> {log_msg}")))
+    #             print("2")
+    #         elif log_type is msg_const.get_warning_type():
+    #             cls.__log.log_warning(log_msg)
+    #         elif log_type is msg_const.get_debug_type():
+    #             cls.__log.log_debug(log_msg)
+    #         elif log_type is msg_const.get_error_type():
+    #             cls.__log.log_error(log_msg)
+    #         else:
+    #             cls.__log.log_critical(log_msg)
+    #
+    #         # assertions
+    #         if test_stt is not const.TC_PASSED_STT:
+    #             assert is_passed
+    #         else:
+    #             assert not is_passed

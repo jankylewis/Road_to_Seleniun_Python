@@ -2,7 +2,7 @@ from enum import Enum
 from selenium.webdriver.common.by import By
 
 
-class Locator_Type(Enum):
+class LocatorType(Enum):
     ID = By.ID
     XPATH = By.XPATH
     CSS = By.CSS_SELECTOR
@@ -14,32 +14,32 @@ class Locator_Type(Enum):
 
     @staticmethod
     def get_id_type():
-        return Locator_Type.ID.value
+        return LocatorType.ID.value
 
     @staticmethod
     def get_xpath_type():
-        return Locator_Type.XPATH.value
+        return LocatorType.XPATH.value
 
     @staticmethod
     def get_css_type():
-        return Locator_Type.CSS.value
+        return LocatorType.CSS.value
 
     @staticmethod
     def get_link_text_type():
-        return Locator_Type.LNK_TEXT.value
+        return LocatorType.LNK_TEXT.value
 
     @staticmethod
     def get_partial_link_text_type():
-        return Locator_Type.PARTIAL_LNK_TEXT.value
+        return LocatorType.PARTIAL_LNK_TEXT.value
 
     @staticmethod
     def get_name_type():
-        return Locator_Type.NAME.value
+        return LocatorType.NAME.value
 
     @staticmethod
     def get_tag_name_type():
-        return Locator_Type.TAG_NAME.value
+        return LocatorType.TAG_NAME.value
 
     @staticmethod
     def get_class_name_type():
-        return Locator_Type.CLASS_NAME.value
+        return LocatorType.CLASS_NAME.value

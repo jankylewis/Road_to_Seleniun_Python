@@ -3,9 +3,10 @@ import pytest
 from selenium import webdriver
 from spo.spofrag_utilities.test_utils.driver_manager import DriverManager as driver_manager
 from spo.spofrag_utilities.test_utils.cookies_manager import CookiesManager as cookies_manager
+from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
 
 
-@pytest.fixture()
+@pytest.fixture(scope=const.FUNCTION_SCOPE, autouse=True)
 def test_factory():
     general_setup()
 
@@ -28,8 +29,4 @@ def general_teardown():
 
 class AbstractTest:
     # driver using in test class
-    __driver_factory: webdriver
-
-
-class LogTest:
-    pass
+    driver_factory: webdriver

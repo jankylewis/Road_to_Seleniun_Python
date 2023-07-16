@@ -1,6 +1,6 @@
 from selenium.webdriver.remote.webelement import *
 from spo.spofrag_common_handler.assertion_handler import AssertionHandler as asserter
-from spo.spofrag_epic.page_object.abstract_pom import Locator_Type as locator_type
+from spo.spofrag_epic.page_object.abstract_pom import LocatorType as locator_type
 
 
 class AccountInformationPOM:
