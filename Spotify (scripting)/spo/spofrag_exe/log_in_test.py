@@ -20,7 +20,7 @@ bypass this process. However, we do not need to repel the robot-recognized proce
 class Test_Log_In(AbstractTest):
     driver_factory = None
 
-    __base_url = reader.get_app_url() + const.LOG_IN_PATH
+    __log_in_url = reader.get_app_url() + const.LOG_IN_PATH
     __usr_email_or_username = reader.get_user_email_or_username()
     __usr_pwd = reader.get_user_password()
 
@@ -90,7 +90,7 @@ class Test_Log_In(AbstractTest):
         cls.__test_name = test_address
 
         cls.driver_factory = driver_manager.get_driver_factory()
-        cls.driver_factory.get(cls.__base_url)
+        cls.driver_factory.get(cls.__log_in_url)
 
         return cls.driver_factory
 

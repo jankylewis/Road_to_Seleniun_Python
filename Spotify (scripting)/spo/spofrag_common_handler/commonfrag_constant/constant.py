@@ -34,6 +34,7 @@ class Constant:
 
     # directed urls
     LOG_IN_PATH = "login"
+    SEARCH_PATH = "search"
 
     # keys to press
     KEY_ENTER = "enter"

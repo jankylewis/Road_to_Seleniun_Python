@@ -1,5 +1,3 @@
-import time
-
 from spo.spofrag_common_handler.ui_action_handler import UIActionHandler as ui_handler
 from spo.spofrag_epic.page_object.log_in_pom import LogInPOM as log_in_pom
 from spo.spofrag_utilities.data_type_utils import DataTypeHandler as data_type_handler
