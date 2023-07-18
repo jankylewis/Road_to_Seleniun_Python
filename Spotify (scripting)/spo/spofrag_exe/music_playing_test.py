@@ -6,6 +6,7 @@ from spo.spofrag_exe.abstract_test import test_factory, driver_manager, Abstract
 from spo.spofrag_utilities.prop_reader_utils import ReadGlobalVar as reader
 from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as const
 
+from spo.spofrag_epic.functionality.account_information_page import AccountInformationPage as account_infor_page
 from spo.spofrag_epic.functionality.music_search_page import MusicSearchPage as music_search_page
 from spo.spofrag_epic.functionality.log_in_page import LogInPage as log_in_page
 
@@ -21,10 +22,27 @@ class Test_Music_Playing(AbstractTest):
 
     @pytest.mark.order(1)
     def test_music_playing_001(self, test_factory: None):
+        # land on music-search page
+        account_infor_page.click_on_spotify_logo(self)
+        self.driver_factory.get(self.__search_url)
+
         # search music
-        # music_search_page.search_by_term(self, "See You Again")
+        music_search_page.search_by_term(self, "Hundred Miles")
+
+        # click on play button
+        music_search_page.click_on_play_btn_at_top_result(self)
 
         time.sleep(100000)
+
+    def log_in(self):
+        """
+
+        :rtype: object
+        """
+        log_in_page.log_in(self,
+                           reader.get_user_email_or_username(),
+                           reader.get_user_password(),
+                           False)
 
     @classmethod
     @pytest.mark.usefixtures("test_factory")
@@ -38,16 +56,4 @@ class Test_Music_Playing(AbstractTest):
         cls.driver_factory.get(cls.__log_in_url)
         cls.log_in(cls)
 
-        # cls.driver_factory.get(cls.__search_url)
-
         return cls.driver_factory
-
-    def log_in(self):
-        """
-
-        :rtype: object
-        """
-        log_in_page.log_in(self,
-                           reader.get_user_email_or_username(),
-                           reader.get_user_password(),
-                           False)
