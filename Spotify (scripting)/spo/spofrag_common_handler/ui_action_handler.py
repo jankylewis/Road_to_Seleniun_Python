@@ -7,6 +7,8 @@ from spo.spofrag_common_handler.assertion_handler import AssertionHandler as ass
 from selenium.webdriver.remote.webelement import *
 from spo.spofrag_utilities.date_time_utils import DateTimeHandler as date_utils
 
+from selenium.webdriver.common.action_chains import ActionChains as action_helper
+
 
 class UIActionHandler:
     driver_factory = None
@@ -38,7 +40,11 @@ class UIActionHandler:
                     break
         return is_clickable
 
-    def click_on_element(self, exp_element: WebElement):
+    def click_on_element(self, exp_element: WebElement) -> object:
+        """
+
+        :rtype: object
+        """
         exp_element = waiter.wait_element_until_clickable(self.driver_factory, exp_element, const.TIME_OUT_3S)
         exp_element.click()
 
@@ -65,7 +71,15 @@ class UIActionHandler:
         if asserter.verify_string_is_equal(const.KEY_ENTER, key_received):
             exp_element.send_keys(key.ENTER)
 
-    def click_toggle(self, exp_toggle: WebElement, is_checked: bool = True) -> bool:
+    def click_on_toggle(self, exp_toggle: WebElement, is_checked: bool = True) -> bool:
         exp_toggle = waiter.wait_element_until_visible(self.driver_factory, exp_toggle, const.TIME_OUT_3S)
 
         return self.driver_factory.find_element(exp_toggle).is_selected()
+
+    def hover_over_element(self, exp_element: WebElement) -> object:
+        """
+
+        :rtype: object
+        """
+        exp_element = waiter.wait_element_until_clickable(self.driver_factory, exp_element, const.TIME_OUT_3S)
+        action_helper(self.driver_factory).move_to_element(exp_element).perform()

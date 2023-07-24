@@ -13,4 +13,5 @@ class MusicSearchPage(music_search_pom):
         ui_handler.send_key_to_element(self, music_search_pom.get_txt_search(self), search_term)
 
     def click_on_play_btn_at_top_result(self):
+        ui_handler.hover_over_element(self, music_search_pom.get_btn_play_at_top_result(self))
         ui_handler.click_on_element(self, music_search_pom.get_btn_play_at_top_result(self))

@@ -9,6 +9,7 @@ from spo.spofrag_common_handler.commonfrag_constant.constant import Constant as 
 from spo.spofrag_epic.functionality.account_information_page import AccountInformationPage as account_infor_page
 from spo.spofrag_epic.functionality.music_search_page import MusicSearchPage as music_search_page
 from spo.spofrag_epic.functionality.log_in_page import LogInPage as log_in_page
+from spo.spofrag_epic.functionality.track_page import TrackPage as track_page
 
 
 class Test_Music_Playing(AbstractTest):
@@ -32,7 +33,9 @@ class Test_Music_Playing(AbstractTest):
         # click on play button
         music_search_page.click_on_play_btn_at_top_result(self)
 
-        time.sleep(100000)
+        track_page.click_on_btn_play_track(self)
+
+        time.sleep(10000)
 
     def log_in(self):
         """
