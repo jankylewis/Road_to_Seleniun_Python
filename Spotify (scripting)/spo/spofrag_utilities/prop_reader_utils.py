@@ -7,10 +7,16 @@ config.read("spo/spofrag_env_config/global_var.ini")
 
 
 class ReadGlobalVar:
+
+    @staticmethod
+    def get_public_url() -> str:
+        public_url = config.get("common_data", "public_url")
+        return public_url
+
     @staticmethod
     def get_app_url() -> str:
         app_url = (
-            config.get("common_data", "base_url") + ReadGlobalVar.get_localization()
+                config.get("common_data", "base_url") + ReadGlobalVar.get_localization()
         )
         return app_url
 

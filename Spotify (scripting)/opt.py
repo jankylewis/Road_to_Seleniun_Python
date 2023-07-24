@@ -6,7 +6,7 @@ from selenium.webdriver.remote.webelement import *
 import time
 import json
 from essential_generators import DocumentGenerator
-
+from spo.spofrag_utilities.test_utils.logs import Logging
 
 class Test:
     num: int = None
@@ -17,7 +17,6 @@ def a():
     new_num = 2
     Test.num = new_num
     return Test.num
-
 
 
 # driver = webdriver.Chrome()
@@ -42,9 +41,35 @@ check: str = "false"
 # print(json.loads(check.lower()))
 
 
-def get_user_dob() -> str:
-    return (DocumentGenerator().gen_word())
+# def get_user_dob() -> str:
+#     return (DocumentGenerator().gen_word())
 
 
-print(a())
-print(Test.num)
+# print(a())
+# print(Test.num)
+
+class TestSomething:
+    pass
+    # def setup(self, method):
+    #     print("\n\nabcd%s:%s" % (type(self).__name__, method.__name__) + "\n\n")
+    #
+    # def teardown(self, method):
+    #     print("tear")
+
+    # def setup(self, method):
+    #     class_name: str = type(self).__name__
+    #     print("\nCLASS NAME: " + class_name)
+    #
+    #     method_name: str = method.__name__
+    #     print("METHOD NAME: " + method_name)
+    #
+    # def test_the_power(self):
+    #     assert True
+    #
+    # def test_something_else(self):
+    #     assert True
+
+x = Logging()
+x.log_infor()
+
+

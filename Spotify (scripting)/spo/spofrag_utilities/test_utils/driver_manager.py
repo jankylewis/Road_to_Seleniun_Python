@@ -42,6 +42,10 @@ class DriverManager:
 
     @staticmethod
     def get_driver_factory() -> webdriver:
+        """
+
+        :rtype: object
+        """
         return DriverManager.driver_factory_used
 
     # specially-designed for edge br
